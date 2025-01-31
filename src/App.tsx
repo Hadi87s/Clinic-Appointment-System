@@ -1,8 +1,6 @@
-import React from "react";
 import {
   createBrowserRouter,
   Outlet,
-  RouteObject,
   RouterProvider,
 } from "react-router-dom";
 import Login from "./screens/login";
@@ -11,8 +9,9 @@ import Dashboard from "./screens/dashboard";
 import ViewAppointment from "./screens/viewAppointment";
 import Navbar from "./components/navbar/navbar";
 import Appointment from "./screens/createAppointment";
+import NotFound from "./components/notFound/notFound";
 
-const routes: RouteObject[] = [
+const routes = createBrowserRouter([
   {
     path: "/",
     element: <NavbarLayout />,
@@ -37,10 +36,13 @@ const routes: RouteObject[] = [
         path: "/appointment",
         element: <Appointment />,
       },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
     ],
   },
-];
-const browserRouter = createBrowserRouter(routes);
+]);
 
 function NavbarLayout() {
   return (
@@ -54,7 +56,7 @@ function NavbarLayout() {
 const App = () => {
   return (
     <div>
-      <RouterProvider router={browserRouter} />
+      <RouterProvider router={routes} />
     </div>
   );
 };
