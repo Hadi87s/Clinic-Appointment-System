@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../App.css";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { authContext } from "../providers/authProvider";
+import { Role } from "../types/@types";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,14 +11,30 @@ const Login = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
+  const { login } = useContext(authContext);
+
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setEmailError(!email);
     setPasswordError(!password);
 
     if (email && password) {
-      // Add your login logic here (e.g., authentication API call)
-      console.log("Email:", email, "Password:", password);
+      let loggedUser;
+      if (email === "Hadi@gmail.com" && password == "123") {
+        loggedUser = {
+          email: email,
+          password: password,
+          role: Role.doctor,
+        };
+      } else {
+        loggedUser = {
+          email: email,
+          password: password,
+          role: Role.patient,
+        };
+      }
+
+      login(loggedUser);
       navigate("/");
     }
   };
