@@ -4,23 +4,22 @@ import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../providers/authProvider";
 import { Role } from "../types/@types";
+import { validateCredentials } from "../utils/validator";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
   const { login } = useContext(authContext);
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setEmailError(!email);
     setPasswordError(!password);
 
-    if (email && password) {
+    if (validateCredentials(email, password)) {
       let loggedUser;
-      if (email === "Hadi@gmail.com" && password == "123") {
+      if (email === "Hadi@gmail.com" && password == "Hadi123@sa") {
         loggedUser = {
           email: email,
           password: password,
@@ -36,6 +35,8 @@ const Login = () => {
 
       login(loggedUser);
       navigate("/");
+    } else {
+      setPasswordError(true);
     }
   };
 
@@ -67,8 +68,6 @@ const Login = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          error={emailError}
-          helperText={emailError ? "Email is required" : ""}
         />
         <TextField
           label="Password"
@@ -80,7 +79,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           error={passwordError}
-          helperText={passwordError ? "Password is required" : ""}
+          helperText={passwordError ? "Wrong Email or Password" : ""}
         />
         <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
           Login
