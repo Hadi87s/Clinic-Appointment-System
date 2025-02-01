@@ -3,10 +3,14 @@ import Login from "./screens/login";
 import Landing from "./components/Landing/landing";
 import Dashboard from "./screens/dashboard";
 import ViewAppointment from "./screens/viewAppointment";
-import Appointment from "./screens/createAppointment";
 import NotFound from "./components/notFound/notFound";
 import NavbarLayout from "./components/navbarLayout/navbarLayout";
-
+import AuthProvider from "./providers/authProvider";
+import Protected from "./components/Protected/protected";
+import ManageAppointments from "./screens/manageAppointments";
+import CreateAppointment from "./screens/createAppointment";
+import "./App.css";
+import NotLogged from "./components/Protected/notLogged";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -21,16 +25,36 @@ const routes = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "/manage-appointments",
+        element: (
+          <Protected>
+            <ManageAppointments />
+          </Protected>
+        ),
+      },
+      {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <Protected>
+            <Dashboard />
+          </Protected>
+        ),
       },
       {
         path: "/view-appointment",
-        element: <ViewAppointment />,
+        element: (
+          <NotLogged>
+            <ViewAppointment />
+          </NotLogged>
+        ),
       },
       {
-        path: "/appointment",
-        element: <Appointment />,
+        path: "/create-appointment",
+        element: (
+          <NotLogged>
+            <CreateAppointment />
+          </NotLogged>
+        ),
       },
       {
         path: "*",
@@ -43,7 +67,9 @@ const routes = createBrowserRouter([
 const App = () => {
   return (
     <div>
-      <RouterProvider router={routes} />
+      <AuthProvider>
+        <RouterProvider router={routes} />
+      </AuthProvider>
     </div>
   );
 };
