@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import "../App.css";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../providers/authProvider";
 import { Role } from "../types/@types";
 import { validateCredentials } from "../utils/validator";
@@ -84,6 +84,9 @@ const Login = () => {
         <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
           Login
         </Button>
+        <div style={{ marginTop: "15px" }}>
+          Don't have an account? <Link to="/signup">Signup</Link>
+        </div>
       </Box>
     </Container>
   );

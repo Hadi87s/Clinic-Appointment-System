@@ -11,6 +11,7 @@ import ManageAppointments from "./screens/manageAppointments";
 import CreateAppointment from "./screens/createAppointment";
 import "./App.css";
 import NotLogged from "./components/Protected/notLogged";
+import Signup from "./screens/singup";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +56,10 @@ const routes = createBrowserRouter([
             <CreateAppointment />
           </NotLogged>
         ),
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
       {
         path: "*",
