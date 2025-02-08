@@ -11,6 +11,7 @@ import ManageAppointments from "./screens/manageAppointments";
 import CreateAppointment from "./screens/createAppointment";
 import "./App.css";
 import NotLogged from "./components/Protected/notLogged";
+import { AppointmentsProvider } from "./providers/appointmentsProvider";
 import Signup from "./screens/singup";
 const routes = createBrowserRouter([
   {
@@ -72,9 +73,11 @@ const routes = createBrowserRouter([
 const App = () => {
   return (
     <div>
-      <AuthProvider>
-        <RouterProvider router={routes} />
-      </AuthProvider>
+      <AppointmentsProvider>
+        <AuthProvider>
+          <RouterProvider router={routes} />
+        </AuthProvider>
+      </AppointmentsProvider>
     </div>
   );
 };
