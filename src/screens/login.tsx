@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import "../App.css";
+import { v4 as uuid } from "uuid";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../providers/authProvider";
@@ -21,12 +22,14 @@ const Login = () => {
       let loggedUser;
       if (email === "Hadi@gmail.com" && password == "Hadi123@sa") {
         loggedUser = {
+          id: uuid(),
           email: email,
           password: password,
           role: Role.doctor,
         };
       } else {
         loggedUser = {
+          id: uuid(),
           email: email,
           password: password,
           role: Role.patient,
