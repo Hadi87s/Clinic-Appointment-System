@@ -22,16 +22,25 @@ const Login = () => {
       let loggedUser;
       if (email === "Hadi@gmail.com" && password == "Hadi123@sa") {
         loggedUser = {
+          // those are placebo, they will be removed, and the actual logic is to compare the user to the user's list stored in the local storage,
           id: uuid(),
+          fullName: "",
           email: email,
           password: password,
+          contactNumber: "",
+          age: "",
+          gender: "",
           role: Role.doctor,
         };
       } else {
         loggedUser = {
           id: uuid(),
+          fullName: "",
           email: email,
           password: password,
+          contactNumber: "",
+          age: "",
+          gender: "",
           role: Role.patient,
         };
       }

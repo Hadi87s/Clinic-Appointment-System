@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   TextField,
@@ -13,6 +13,10 @@ import {
   Alert,
   SelectChangeEvent,
 } from "@mui/material";
+import { v4 as uuid } from "uuid";
+import { authContext } from "../providers/authProvider";
+import { IUser, Role } from "../types/@types";
+import { validateUser } from "../utils/validator";
 
 const INITIAL_USER = {
   fullName: "",
@@ -26,7 +30,7 @@ const INITIAL_USER = {
 
 const Signup: React.FC = () => {
   const [formData, setFormData] = useState(INITIAL_USER);
-
+  const { signUserUp } = useContext(authContext);
   const [success, setSuccess] = useState(false);
 
   const handleChange = (
@@ -48,11 +52,28 @@ const Signup: React.FC = () => {
       alert("Passwords do not match");
       return;
     }
-    // Handle form submission
+
+    const signedUser: IUser = {
+      id: uuid(),
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      contactNumber: formData.contactNumber,
+      age: formData.age,
+      gender: formData.gender,
+      role: Role.patient,
+    };
+
     console.log(formData);
-    // Simulate a successful signup
-    setSuccess(true);
-    setFormData(INITIAL_USER);
+    const { isValid } = validateUser(formData);
+    if (isValid) {
+      // further validation required here, check if the email already exists, if not add it as expected, all of this if the validation passed.
+      signUserUp(signedUser); // signing user up thus saving it to the local storage.
+      setSuccess(true);
+      setFormData(INITIAL_USER); // reset the signed up user.
+    } else {
+      alert("double check everything amigo");
+    }
   };
 
   const handleCloseSnackbar = () => {
@@ -107,6 +128,9 @@ const Signup: React.FC = () => {
             autoComplete="new-password"
             value={formData.password}
             onChange={handleChange}
+            onError={() => {
+              "hi";
+            }}
           />
           <TextField
             margin="normal"
