@@ -5,7 +5,7 @@ function NavbarLayout() {
   return (
     <>
       <Navbar />
-      <Outlet /> {/* This will render the matched route's component */}
+      <Outlet />
     </>
   );
 }

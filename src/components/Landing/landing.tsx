@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import "../../App.css";
+import Features from "../features/Features";
+import Testimonials from "../testimonials/Testimonials";
+import Footer from "../footer/Footer";
+
 const Landing = () => {
   return (
     <div
-      className="w-[100%] h-[100vh] absolute inset-0 overflow-hidden"
+      className="w-[100%] h-[100vh] absolute inset-0 "
       style={{
         backgroundImage: `url(${"../../../public/landingBackground.svg"})`,
         backgroundSize: "cover",
@@ -22,7 +26,9 @@ const Landing = () => {
           <div className="flex justify-center w-[100%] mt-10 -ml-7.5">
             <Link
               to="/create-appointment"
-              className="font-[500] p-4 transition duration-150 bg-blue-600 text-blue-50 rounded-2xl outline-2 outline-blue-50 hover:bg-blue-50 hover:text-blue-900 hover:outline-blue-800"
+              className="font-[500] p-4 transition duration-150 bg-blue-600 text-blue-50 rounded-2xl
+              outline-2 outline-blue-50 hover:bg-blue-50 hover:text-blue-900 hover:outline-blue-800
+              shadow-2xl mb-5"
             >
               Book an Appointment
             </Link>
@@ -37,7 +43,9 @@ const Landing = () => {
           }}
         ></div>
       </div>
-      <div className="doctorImage"></div>
+      <Features />
+      <Testimonials />
+      <Footer />
     </div>
   );
 };

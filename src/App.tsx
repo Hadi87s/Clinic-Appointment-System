@@ -14,6 +14,7 @@ import NotLogged from "./components/Protected/notLogged";
 import { AppointmentsProvider } from "./providers/appointmentsProvider";
 import Signup from "./screens/signup";
 import AboutUs from "./screens/about";
+
 const routes = createBrowserRouter([
   {
     path: "/",

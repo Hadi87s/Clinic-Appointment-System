@@ -5,6 +5,7 @@ import { authContext } from "../../providers/authProvider";
 import { useContext, useState } from "react";
 import { Role } from "../../types/@types";
 import { Menu, X } from "lucide-react";
+
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
         className={`mt-2 flex w-[90%] justify-between content-center ${
           menuVisible ? "h-55" : "h-15"
         } p-4 z-10 text-blue-200 navbar rounded-2xl bg-gradient-to-r from-blue-900/85 to-blue-500/85
-        backdrop-blur-[2px] fixed inset-0 inset-x-auto border-2 border-blue-600`}
+        backdrop-blur-[2px] fixed inset-0 inset-x-auto border-2 border-blue-600 font-[500]`}
       >
         <div className="logo ">Logo</div>
         <div className="hidden md:flex gap-5 ">
