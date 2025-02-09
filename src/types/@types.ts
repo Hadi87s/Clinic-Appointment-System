@@ -2,8 +2,12 @@ import { Dayjs } from "dayjs";
 
 export interface IUser {
   id: string;
+  fullName: string;
   email: string;
   password: string;
+  contactNumber: string,
+  age: string,
+  gender: string,
   role: Role;
 }
 

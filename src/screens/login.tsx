@@ -1,43 +1,34 @@
 import { useContext, useState } from "react";
 import "../App.css";
-import { v4 as uuid } from "uuid";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../providers/authProvider";
-import { Role } from "../types/@types";
-import { validateCredentials } from "../utils/validator";
+
+import { validateCredentials } from "../hooks/useValidator";
+import { IUser } from "../types/@types";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
-  const { login } = useContext(authContext);
+  const { login, singedUpUsers } = useContext(authContext);
+
+  const logUserIn = (signedUser: IUser) => {
+    login(signedUser);
+    navigate("/");
+  };
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setPasswordError(!password);
 
     if (validateCredentials(email, password)) {
-      let loggedUser;
-      if (email === "Hadi@gmail.com" && password == "Hadi123@sa") {
-        loggedUser = {
-          id: uuid(),
-          email: email,
-          password: password,
-          role: Role.doctor,
-        };
-      } else {
-        loggedUser = {
-          id: uuid(),
-          email: email,
-          password: password,
-          role: Role.patient,
-        };
-      }
-
-      login(loggedUser);
-      navigate("/");
+      singedUpUsers.forEach((signedUser) => {
+        signedUser.email === email && signedUser.password === password
+          ? logUserIn(signedUser)
+          : null;
+      });
     } else {
       setPasswordError(true);
     }
@@ -87,6 +78,9 @@ const Login = () => {
         <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
           Login
         </Button>
+        <div style={{ marginTop: "15px" }}>
+          Don't have an account? <Link to="/signup">Signup</Link>
+        </div>
       </Box>
     </Container>
   );
