@@ -8,8 +8,8 @@ const Navbar = () => {
   const { user, logout } = useContext(authContext);
   const navigate = useNavigate();
   return (
-    <div className="container">
-      <div className="navbar">
+    <div className="container mt-3">
+      <div className="navbar rounded-2xl">
         <div className="logo">Logo</div>
         <div className="links">
           <Link to="/">Home</Link>
