@@ -49,7 +49,7 @@ const Signup = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Basic validation
+
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage(errors);
       return;
