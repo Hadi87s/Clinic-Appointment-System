@@ -14,9 +14,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="mb-6 md:mb-0">
-            <h2 className="text-xl font-bold mb-4">
-              Clinic Appointment System
-            </h2>
+            <h2 className="text-xl font-bold mb-4">AppointMed</h2>
             <p className="text-sm text-gray-300 mb-4">
               Making healthcare more accessible and convenient for everyone.
             </p>
@@ -112,8 +110,7 @@ const Footer = () => {
 
         <div className="border-t border-blue-800 pt-6 text-center">
           <p className="text-sm text-gray-300">
-            © {new Date().getFullYear()} Clinic Appointment System. All Rights
-            Reserved.
+            © {new Date().getFullYear()} AppointMed. All Rights Reserved.
           </p>
           <p className="text-xs text-gray-400 mt-2">
             Designed with ❤️ by Your Team

@@ -7,14 +7,13 @@ const reviews = [
   {
     id: 1,
     name: "John Doe",
-    review:
-      "This clinic appointment system is a game changer! Booking an appointment has never been easier.",
+    review: "This clinic appointment system is a game changer!",
     image: "https://randomuser.me/api/portraits/men/1.jpg",
     rating: 5,
   },
   {
     id: 2,
-    name: "Jack Smith",
+    name: "Derek Smith",
     review:
       "The convenience and ease of use are unmatched. Highly recommend this platform!",
     image: "https://randomuser.me/api/portraits/men/2.jpg",
@@ -22,27 +21,11 @@ const reviews = [
   },
   {
     id: 3,
-    name: "Robert Johnson",
+    name: "Aaron Johnson",
     review:
       "Fantastic experience! I can book and manage my doctor appointments seamlessly.",
     image: "https://randomuser.me/api/portraits/men/3.jpg",
     rating: 5,
-  },
-  {
-    id: 4,
-    name: "Emily Davis",
-    review:
-      "Amazing service! The staff is very helpful and the system is user-friendly.",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Sarah Brown",
-    review:
-      "I love how easy it is to schedule appointments. This platform saves me so much time!",
-    image: "https://randomuser.me/api/portraits/women/2.jpg",
-    rating: 4,
   },
 ];
 
@@ -69,7 +52,7 @@ const Testimonials: React.FC = () => {
   }, [currentIndex]); // Reset interval when currentIndex changes
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-200 py-16 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-r from-blue-50 to-blue-200 py-16 flex flex-col items-center justify-center">
       <h2 className="text-4xl font-bold text-blue-800 mb-10">
         What Our Patients Say
       </h2>

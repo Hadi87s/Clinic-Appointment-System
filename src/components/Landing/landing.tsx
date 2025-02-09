@@ -3,6 +3,7 @@ import "../../App.css";
 import Features from "../features/Features";
 import Testimonials from "../testimonials/Testimonials";
 import Footer from "../footer/Footer";
+import ContactUs from "../contact/ContactUs";
 
 const Landing = () => {
   return (
@@ -45,6 +46,7 @@ const Landing = () => {
       </div>
       <Features />
       <Testimonials />
+      <ContactUs />
       <Footer />
     </div>
   );

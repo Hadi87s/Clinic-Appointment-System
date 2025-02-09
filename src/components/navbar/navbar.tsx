@@ -15,11 +15,11 @@ const Navbar = () => {
     <div className="flex justify-center mx-auto w-[100%]">
       <div
         className={`mt-2 flex w-[90%] justify-between content-center ${
-          menuVisible ? "h-55" : "h-15"
+          menuVisible ? "h-55" : "h-17"
         } p-4 z-10 text-blue-200 navbar rounded-2xl bg-gradient-to-r from-blue-900/85 to-blue-500/85
         backdrop-blur-[2px] fixed inset-0 inset-x-auto border-2 border-blue-600 font-[500]`}
       >
-        <div className="logo ">Logo</div>
+        <div className="logo h-fit text-white text-[24px]">AppointMed</div>
         <div className="hidden md:flex gap-5 ">
           <Link
             className={`transition duration-150 hover:text-white ${
