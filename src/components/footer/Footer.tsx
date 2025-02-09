@@ -113,7 +113,7 @@ const Footer = () => {
             © {new Date().getFullYear()} AppointMed. All Rights Reserved.
           </p>
           <p className="text-xs text-gray-400 mt-2">
-            Designed with ❤️ by Your Team
+            Designed with ❤️ by Quintelligence Team
           </p>
         </div>
       </div>
