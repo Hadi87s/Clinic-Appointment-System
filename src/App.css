@@ -13,3 +13,11 @@ body{
     margin: 0 5%;
     padding-top: 70px;
 }
+
+.h1-size {
+    font-size: clamp(1.8rem, 10vw, 5rem);
+}
+
+.p-size {
+    font-size: clamp(1rem, 5vw, 1.7rem);
+}

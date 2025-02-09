@@ -4,7 +4,7 @@ import "../../App.css";
 import { authContext } from "../../providers/authProvider";
 import { useContext, useState } from "react";
 import { Role } from "../../types/@types";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -14,12 +14,12 @@ const Navbar = () => {
     <div className="flex justify-center mx-auto w-[100%]">
       <div
         className={`mt-2 flex w-[90%] justify-between content-center ${
-          menuVisible ? "h-45" : "h-15"
+          menuVisible ? "h-55" : "h-15"
         } p-4 z-10 text-blue-200 navbar rounded-2xl bg-gradient-to-r from-blue-900/85 to-blue-500/85
         backdrop-blur-[2px] fixed inset-0 inset-x-auto border-2 border-blue-600`}
       >
         <div className="logo ">Logo</div>
-        <div className="links hidden md:flex gap-5 ">
+        <div className="hidden md:flex gap-5 ">
           <Link
             className={`transition duration-150 hover:text-white ${
               location.pathname == "/" ? "border-b-2 rounded-b-[2px]" : ""
@@ -27,6 +27,14 @@ const Navbar = () => {
             to="/"
           >
             Home
+          </Link>
+          <Link
+            className={`transition duration-150 hover:text-white ${
+              location.pathname == "/about" ? "border-b-2 rounded-b-[2px]" : ""
+            }`}
+            to="/about"
+          >
+            About Us
           </Link>
           {user?.role === Role.doctor ? (
             <Link
@@ -90,9 +98,28 @@ const Navbar = () => {
 
           <Link to="/create-appointment">Create Appointment</Link>
           <Link to="/view-appointment">View Appointments</Link>
-          <span></span>
+          <div
+            className={`font-[500] bg-blue-100 text-blue-900 p-1 block md:hidden items-center rounded-2xl ring-1
+           hover:ring-blue-400 hover:bg-blue-700 hover:text-blue-100 transition duration-200 
+           cursor-pointer`}
+          >
+            {!user ? (
+              <Link to="/login">Login</Link>
+            ) : (
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  logout();
+                  navigate("/");
+                }}
+                to="/"
+              >
+                Logout
+              </Link>
+            )}
+          </div>
         </div>
-        <div className="font-[500] bg-blue-700 p-4 hidden md:flex items-center rounded-2xl ring-1 hover:ring-blue-400 hover:bg-blue-500 hover:text-blue-950 transition duration-200 cursor-pointer">
+        <div className="font-[500] bg-blue-100 text-blue-900 p-4 hidden md:flex items-center rounded-2xl ring-1 hover:ring-blue-400 hover:bg-blue-700 hover:text-blue-100 transition duration-200 cursor-pointer">
           {!user ? (
             <Link to="/login">Login</Link>
           ) : (
@@ -112,10 +139,10 @@ const Navbar = () => {
           onClick={() => {
             menuVisible ? setMenuVisible(false) : setMenuVisible(true);
           }}
-          className="flex md:hidden"
+          className="flex md:hidden cursor-pointer"
         >
           {" "}
-          <Menu />
+          {!menuVisible ? <Menu /> : <X />}
         </div>
       </div>
     </div>
