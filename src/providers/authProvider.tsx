@@ -1,10 +1,13 @@
 import React, { createContext, useState } from "react";
 import { IUser, Role } from "../types/@types";
+import { v4 as uuid } from "uuid";
+
 interface IProps {
   children: React.ReactNode;
 }
 
 const INITIAL_USER = {
+  id: uuid(),
   email: "",
   password: "",
   role: Role.patient,
