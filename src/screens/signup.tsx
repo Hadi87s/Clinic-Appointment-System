@@ -16,7 +16,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { authContext } from "../providers/authProvider";
 import { IUser, Role } from "../types/@types";
-import { validateUser } from "../utils/validator";
+import { useValidateUser } from "../hooks/useValidator";
 
 const INITIAL_USER = {
   fullName: "",
@@ -28,10 +28,12 @@ const INITIAL_USER = {
   gender: "",
 };
 
-const Signup: React.FC = () => {
+const Signup = () => {
   const [formData, setFormData] = useState(INITIAL_USER);
   const { signUserUp } = useContext(authContext);
   const [success, setSuccess] = useState(false);
+  const { isValid, errors } = useValidateUser(formData);
+  const [errorMessage, setErrorMessage] = useState<Record<string, string>>({});
 
   const handleChange = (
     e:
@@ -49,7 +51,7 @@ const Signup: React.FC = () => {
     e.preventDefault();
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      setErrorMessage(errors);
       return;
     }
 
@@ -64,15 +66,16 @@ const Signup: React.FC = () => {
       role: Role.patient,
     };
 
-    console.log(formData);
-    const { isValid } = validateUser(formData);
+    console.log(isValid);
+    console.log(errors);
+
     if (isValid) {
-      // further validation required here, check if the email already exists, if not add it as expected, all of this if the validation passed.
-      signUserUp(signedUser); // signing user up thus saving it to the local storage.
+      signUserUp(signedUser);
       setSuccess(true);
-      setFormData(INITIAL_USER); // reset the signed up user.
+      setFormData(INITIAL_USER);
+      setErrorMessage({});
     } else {
-      alert("double check everything amigo");
+      setErrorMessage(errors);
     }
   };
 
@@ -105,6 +108,8 @@ const Signup: React.FC = () => {
             autoFocus
             value={formData.fullName}
             onChange={handleChange}
+            error={!!errorMessage.fullname}
+            helperText={errorMessage.fullname}
           />
           <TextField
             margin="normal"
@@ -116,6 +121,8 @@ const Signup: React.FC = () => {
             autoComplete="email"
             value={formData.email}
             onChange={handleChange}
+            error={!!errorMessage.email}
+            helperText={errorMessage.email}
           />
           <TextField
             margin="normal"
@@ -131,6 +138,8 @@ const Signup: React.FC = () => {
             onError={() => {
               "hi";
             }}
+            error={!!errorMessage.password}
+            helperText={errorMessage.password}
           />
           <TextField
             margin="normal"
@@ -143,6 +152,8 @@ const Signup: React.FC = () => {
             autoComplete="new-password"
             value={formData.confirmPassword}
             onChange={handleChange}
+            error={!!errorMessage.confirmPassword}
+            helperText={errorMessage.confirmPassword}
           />
           <TextField
             margin="normal"
@@ -155,6 +166,8 @@ const Signup: React.FC = () => {
             autoComplete="tel"
             value={formData.contactNumber}
             onChange={handleChange}
+            error={!!errors.contactNumber}
+            helperText={errors.contactNumber}
           />
           <TextField
             margin="normal"
@@ -166,6 +179,8 @@ const Signup: React.FC = () => {
             id="age"
             value={formData.age}
             onChange={handleChange}
+            error={!!errorMessage.age}
+            helperText={errorMessage.age}
           />
           <FormControl fullWidth margin="normal">
             <InputLabel id="gender-label">Gender</InputLabel>

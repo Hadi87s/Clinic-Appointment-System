@@ -5,7 +5,7 @@ import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../providers/authProvider";
 import { Role } from "../types/@types";
-import { validateCredentials } from "../utils/validator";
+import { validateCredentials } from "../hooks/useValidator";
 
 const Login = () => {
   const [email, setEmail] = useState("");

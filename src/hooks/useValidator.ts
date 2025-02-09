@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { authContext } from "../providers/authProvider";
+
 export function validateCredentials(email: string, password: string) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex =
@@ -15,8 +18,17 @@ export interface User {
   gender: string;
 }
 
-export const validateUser = (user: User): { isValid: boolean; errors: Record<string, string> } => {
+export const useValidateUser = (
+  user: User
+): { isValid: boolean; errors: Record<string, string> } => {
+  const { singedUpUsers } = useContext(authContext);
   const errors: Record<string, string> = {};
+
+  const isEmailDuplicated = singedUpUsers.some(
+    (signedUser) => signedUser.email.trim() === user.email.trim()
+  );
+
+  console.log(isEmailDuplicated);
 
   if (!user.fullName.trim()) {
     errors.fullName = "Full name is required";
@@ -26,6 +38,8 @@ export const validateUser = (user: User): { isValid: boolean; errors: Record<str
     errors.email = "Email is required";
   } else if (!/\S+@\S+\.\S+/.test(user.email)) {
     errors.email = "Email address is invalid";
+  } else if (isEmailDuplicated) {
+    errors.email = "Email address already exists";
   }
 
   if (!user.password.trim()) {
