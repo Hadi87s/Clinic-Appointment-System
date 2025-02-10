@@ -28,8 +28,10 @@ const LargeScreensNav = (props: IProps) => {
   const location = useLocation();
   return (
     <div className="hidden lg:flex gap-5 ">
-      {links.map((link) => (
-        <LgNavLink path={link.path}>{link.title}</LgNavLink>
+      {links.map((link, index) => (
+        <LgNavLink key={index} path={link.path}>
+          {link.title}
+        </LgNavLink>
       ))}
 
       {props.user?.role === Role.doctor ? (

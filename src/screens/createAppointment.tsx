@@ -33,6 +33,8 @@ export default function CreateAppointment() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     handleSubmitLogic(data);
+    console.log(data.bookedSlot);
+
     setShowConfirmation(true);
   };
 

@@ -16,6 +16,8 @@ const AppointmentCard = (props: IProps) => {
     visible: { opacity: 1, transition: { duration: 0.5 } },
   };
 
+  console.log(appointment); //Todo: remove when done debugging
+
   return (
     <motion.div
       variants={cardVariants}

@@ -47,9 +47,10 @@ const ViewAppointment = () => {
           <div className="text-4xl md:text-5xl text-blue-700 font-[600] text-center mb-10">{`${
             user?.fullName.split(" ")[0]
           }'s Appointments`}</div>
-          <div className="flex gap-5 flex-wrap">
-            {state.appointments.map((app) => (
+          <div className="flex gap-5 flex-wrap justify-center">
+            {state.appointments.map((app, index) => (
               <AppointmentCard
+                key={index}
                 appointment={app}
                 onCancel={handleAppointmentCancellation}
               />
