@@ -35,24 +35,43 @@ const Login = () => {
   };
 
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="sm">
       <Box
         component="form"
         onSubmit={handleLogin}
         sx={{
-          mt: 8,
+          mt: 10,
+          p: 4,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          p: 3,
-          boxShadow: 3,
-          borderRadius: 2,
-          backgroundColor: "#f9f9f9",
+          borderRadius: 3,
+          boxShadow: 4,
+          backgroundColor: "white",
+          transition: "all 0.3s",
+          fontFamily: '"Fredoka", serif',
+          "&:hover": { boxShadow: 6 },
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
-          Login
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          sx={{
+            color: "#1E40AF",
+            fontWeight: "600",
+            fontFamily: '"Fredoka", serif',
+          }}
+        >
+          Welcome Back
         </Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: "gray", mb: 2, fontFamily: '"Fredoka", serif' }}
+        >
+          Login to continue managing your appointments
+        </Typography>
+
         <TextField
           label="Email"
           variant="outlined"
@@ -62,7 +81,23 @@ const Login = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          sx={{
+            fontFamily: '"Fredoka", serif',
+            "& .MuiOutlinedInput-root": {
+              fontFamily: '"Fredoka", serif',
+              "& fieldset": { borderColor: "#1E40AF" },
+              "&:hover fieldset": { borderColor: "#1E40AF" },
+              "&.Mui-focused fieldset": { borderColor: "#1E40AF" },
+              borderRadius: "10px",
+            },
+          }}
+          InputLabelProps={{
+            sx: {
+              fontFamily: '"Fredoka", serif',
+            },
+          }}
         />
+
         <TextField
           label="Password"
           variant="outlined"
@@ -74,13 +109,56 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           error={passwordError}
           helperText={passwordError ? "Wrong Email or Password" : ""}
+          sx={{
+            fontFamily: '"Fredoka", serif',
+            "& .MuiOutlinedInput-root": {
+              fontFamily: '"Fredoka", serif',
+              "& fieldset": { borderColor: "#1E40AF" },
+              "&:hover fieldset": { borderColor: "#1E40AF" },
+              "&.Mui-focused fieldset": { borderColor: "#1E40AF" },
+              borderRadius: "10px",
+            },
+          }}
+          InputLabelProps={{
+            sx: {
+              fontFamily: '"Fredoka", serif',
+            },
+          }}
         />
-        <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
+
+        <Button
+          type="submit"
+          variant="contained"
+          fullWidth
+          sx={{
+            mt: 2,
+            backgroundColor: "#1E40AF",
+            fontFamily: '"Fredoka", serif',
+            "&:hover": { backgroundColor: "#1E3A8A" },
+            padding: "10px",
+            borderRadius: "10px",
+          }}
+        >
           Login
         </Button>
-        <div style={{ marginTop: "15px" }}>
-          Don't have an account? <Link to="/signup">Signup</Link>
-        </div>
+
+        <Typography
+          variant="body2"
+          sx={{ mt: 2, color: "gray", fontFamily: '"Fredoka", serif' }}
+        >
+          Don't have an account?{" "}
+          <Link
+            className="hover:underline"
+            to="/signup"
+            style={{
+              color: "#1E40AF",
+              fontWeight: "bold",
+              fontFamily: '"Fredoka", serif',
+            }}
+          >
+            Signup
+          </Link>
+        </Typography>
       </Box>
     </Container>
   );
