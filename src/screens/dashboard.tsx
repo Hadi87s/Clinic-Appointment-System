@@ -2,7 +2,6 @@ import { Container, Typography, Box } from "@mui/material";
 import StatisticsCards from "../components/DashboardComponent/StatisticsCards";
 import UpcomingAppointments from "../components/DashboardComponent/UpcomingAppointments";
 
-
 const Dashboard = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
@@ -12,7 +11,7 @@ const Dashboard = () => {
 
       <StatisticsCards />
 
-      <Box sx={{ mt: 4 }}>
+      <Box sx={{ mt: 4, mb: 4 }}>
         <UpcomingAppointments />
       </Box>
     </Container>

@@ -34,26 +34,22 @@ const LargeScreensNav = (props: IProps) => {
 
       {props.user?.role === Role.doctor ? (
         <Link
-          className={`transition duration-150 hover:text-white ${
-            location.pathname == "/dashboard"
-              ? "border-b-2 rounded-b-[2px]"
-              : ""
+          className={`transition duration-150 hover:text-white flex items-center ${
+            location.pathname == "/dashboard" ? "text-white" : ""
           }`}
           to="/dashboard"
         >
-          Dashboard
+          <span>Dashboard</span>
         </Link>
       ) : null}
       {props.user?.role === Role.doctor ? (
         <Link
-          className={`transition duration-150 hover:text-white ${
-            location.pathname == "/manage-appointments"
-              ? "border-b-2 rounded-b-[2px]"
-              : ""
+          className={`transition duration-150 hover:text-white flex items-center ${
+            location.pathname == "/manage-appointments" ? "text-white" : ""
           }`}
           to="/manage-appointments"
         >
-          Manage
+          <span>Manage</span>
         </Link>
       ) : null}
     </div>
