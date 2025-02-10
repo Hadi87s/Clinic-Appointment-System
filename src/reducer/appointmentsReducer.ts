@@ -16,19 +16,16 @@ export const INITIAL_APPOINTMENT: AppointmentState = {
   id: "",
 };
 
-
 export type AppointmentAction =
   | { type: AppointmentActionKind.ADD; payload: { appointment: Appointment } }
   | {
       type: AppointmentActionKind.UPDATE;
       payload: { id: string; updatedData: Partial<Appointment> };
-    }; 
-| 
-    {
+    }
+  | {
       type: AppointmentActionKind.REMOVE;
-      payload: { id: string; };
+      payload: { id: string };
     };
-
 
 export const appointmentReducer = (
   state: AppointmentState,

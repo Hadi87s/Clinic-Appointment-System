@@ -13,7 +13,7 @@ const ViewAppointment = () => {
   const handleAppointmentCancellation = (id: string) => {
     dispatch({
       type: AppointmentActionKind.REMOVE,
-      payload: { appointment: state.appointments[0], id },
+      payload: { id },
     });
   };
 
