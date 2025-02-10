@@ -140,7 +140,11 @@ export default function CreateAppointment() {
                   );
                 }
                 if (view === "minutes") {
-                  return date.hour() < 9 || date.hour() >= 17 && bookedSlots.includes(date.toISOString());
+                  return (
+                    date.hour() < 9 ||
+                    (date.hour() >= 17 &&
+                      bookedSlots.includes(date.toISOString()))
+                  );
                 }
                 return false;
               }}

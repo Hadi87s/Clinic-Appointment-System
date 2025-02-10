@@ -56,7 +56,7 @@ export const useValidateUser = (
 
   if (!user.contactNumber.trim()) {
     errors.contactNumber = "Contact number is required";
-  } else if (!/^\d{10}$/.test(user.contactNumber)) {
+  } else if (!/^\d{7,}$/.test(user.contactNumber)) {
     errors.contactNumber = "Contact number is invalid";
   }
 

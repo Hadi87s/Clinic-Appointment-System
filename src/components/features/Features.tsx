@@ -1,11 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Heart, CalendarCheck, ShieldCheck, Users } from "lucide-react";
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+import { cardVariants } from "../../types/@types";
 
 const features = [
   {

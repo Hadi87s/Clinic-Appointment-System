@@ -4,6 +4,7 @@ import Features from "../features/Features";
 import Testimonials from "../testimonials/Testimonials";
 import Footer from "../footer/Footer";
 import ContactUs from "../contact/ContactUs";
+import { motion } from "framer-motion";
 
 const Landing = () => {
   return (
@@ -16,7 +17,16 @@ const Landing = () => {
       }}
     >
       <div className="flex flex-row ">
-        <div className="title mt-[200px] ml-15">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: { opacity: 0, x: -50 },
+            visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+          }}
+          className="title mt-[200px] ml-15"
+        >
           <h1 className="h1-size font-bold text-gray-800 mb-5">
             Your Health, Our Priority
           </h1>
@@ -34,7 +44,7 @@ const Landing = () => {
               Book an Appointment
             </Link>
           </div>
-        </div>
+        </motion.div>
         <div
           className="hidden lg:block w-[500px] h-[730px]"
           style={{

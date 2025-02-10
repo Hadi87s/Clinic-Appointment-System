@@ -15,12 +15,12 @@ const NotLogged: React.FC<IProps> = ({ children }) => {
   if (user !== null) return children;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-200 to-blue-500">
+    <div className="flex items-center justify-center h-[90vh] bg-white rounded-2xl">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="bg-white/20 backdrop-blur-lg shadow-lg p-10 rounded-2xl text-center w-96"
+        className="bg-gradient-to-tl border-2 border-blue-300 from-blue-100 to-blue-300 backdrop-blur-lg shadow-lg p-10 rounded-2xl text-center w-96"
       >
         <h2 className="text-3xl font-bold text-white mb-4">
           Access Restricted 🚀

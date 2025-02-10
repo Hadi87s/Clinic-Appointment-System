@@ -25,9 +25,9 @@ const links = [
 ];
 
 const LargeScreensNav = (props: IProps) => {
-    const location = useLocation();
+  const location = useLocation();
   return (
-    <div className="hidden md:flex gap-5 ">
+    <div className="hidden lg:flex gap-5 ">
       {links.map((link) => (
         <LgNavLink path={link.path}>{link.title}</LgNavLink>
       ))}
@@ -53,7 +53,7 @@ const LargeScreensNav = (props: IProps) => {
           }`}
           to="/manage-appointments"
         >
-          Manage Appointment
+          Manage
         </Link>
       ) : null}
     </div>
