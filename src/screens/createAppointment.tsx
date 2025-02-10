@@ -57,69 +57,8 @@ export default function CreateAppointment() {
           Book Appointment
         </Typography>
 
-        <TextField
-          label="Patient Name"
-          variant="outlined"
-          fullWidth
-          error={!!errors.patientName}
-          helperText={errors.patientName?.message}
-          {...register("patientName", { required: "Patient name is required" })}
-        />
-
-        <TextField
-          label="Contact Number"
-          variant="outlined"
-          fullWidth
-          error={!!errors.contact}
-          helperText={errors.contact?.message}
-          {...register("contact", {
-            required: "Contact number is required",
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: "Invalid contact number (10 digits required)",
-            },
-          })}
-        />
-
-        <TextField
-          label="Age"
-          variant="outlined"
-          type="number"
-          fullWidth
-          error={!!errors.age}
-          helperText={errors.age?.message}
-          {...register("age", {
-            required: "Age is required",
-            min: {
-              value: 0,
-              message: "Age must be a positive number",
-            },
-          })}
-        />
-
         <Controller
-          name="gender"
-          control={control}
-          rules={{ required: "Gender is required" }}
-          render={({ field }) => (
-            <FormControl fullWidth error={!!errors.gender}>
-              <InputLabel>Gender</InputLabel>
-              <Select {...field} label="Gender" value={field.value || ""}>
-                <MenuItem value="male">Male</MenuItem>
-                <MenuItem value="female">Female</MenuItem>
-                <MenuItem value="other">Other</MenuItem>
-              </Select>
-              {errors.gender && (
-                <Typography variant="caption" color="error">
-                  {errors.gender.message}
-                </Typography>
-              )}
-            </FormControl>
-          )}
-        />
-
-        <Controller
-          name="appointmentDateTime"
+          name="bookedSlot"
           control={control}
           rules={{
             required: "Appointment time is required",

@@ -7,6 +7,7 @@ export enum AppointmentActionKind {
 export type AppointmentState = {
   appointments: Appointment[];
 };
+
 export const INITIAL_APPOINTMENT: AppointmentState = {
   appointments: [],
 };

@@ -16,11 +16,7 @@ export const useAppointmentForm = () => {
 
   const formMethods = useForm<FormData>({
     defaultValues: {
-      patientName: "",
-      contact: "",
-      age: 0,
-      gender: "",
-      appointmentDateTime: null,
+      bookedSlot: null,
       symptoms: "",
     },
   });
@@ -80,8 +76,12 @@ export const useAppointmentForm = () => {
       id: uuid(),
       ...data,
       status: AppointmentStatus.PENDING,
-      bookedSlot: data.appointmentDateTime?.toISOString()!,
-      patientId: user?.id || "",
+      bookedSlot: data.bookedSlot?.toISOString()!,
+      age: Number(user?.age!),
+      contact: user?.contactNumber!,
+      gender: user?.gender!,
+      patientName: user?.fullName!,
+      patientId: user?.id || ""
     };
     dispatch({ type: AppointmentActionKind.ADD, payload: { appointment } });
     formMethods.reset();
