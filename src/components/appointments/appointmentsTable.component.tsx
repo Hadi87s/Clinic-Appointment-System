@@ -1,23 +1,12 @@
-import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Chip } from "@mui/material";
 import dayjs from "dayjs";
 import Action from "./action.component";
-
-interface Appointment {
-  id: number;
-  patientName: string;
-  phoneNumber: string;
-  age: number;
-  gender: string;
-  appointmentDate: string;
-  status: string;
-  note?: string;
-}
+import { Appointment, AppointmentStatus } from "../../types/@types";
 
 interface AppointmentsTableProps {
   appointments: Appointment[];
-  onUpdateAppointment: (id: number, updatedData: Partial<Appointment>) => void; // Function to update appointment
+  onUpdateAppointment: (id: string, updatedData: Partial<Appointment>) => void; // Function to update appointment
 }
 
 const AppointmentsTable: React.FC<AppointmentsTableProps> = ({
@@ -26,49 +15,63 @@ const AppointmentsTable: React.FC<AppointmentsTableProps> = ({
 }) => {
   const columns: GridColDef[] = [
     {
-      field: "id",
-      headerName: "ID",
-      flex: 0.5,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
       field: "patientName",
       headerName: "Patient Name",
       flex: 1,
       align: "center",
       headerAlign: "center",
+      sortable: false,
     },
     {
-      field: "phoneNumber",
+      field: "contact",
       headerName: "Phone Number",
       flex: 1,
       align: "center",
       headerAlign: "center",
+      sortable: false,
     },
     {
       field: "age",
       headerName: "Age",
-      flex: 1,
+      flex: 0.5,
       align: "center",
       headerAlign: "center",
+      sortable: false,
     },
     {
       field: "gender",
       headerName: "Gender",
-      flex: 1,
+      flex: 0.75,
       align: "center",
       headerAlign: "center",
+      sortable: false,
     },
     {
-      field: "appointmentDate",
+      field: "bookedSlot",
       headerName: "Appointment Date",
-      flex: 1,
+      flex: 1.5,
       align: "center",
       headerAlign: "center",
       renderCell: (params) => (
-        <span>{dayjs(params.value).format("YYYY-MM-DD HH:mm:ss")}</span>
+        <span>{dayjs(params.value).format("YYYY-MM-DD HH:mm")}</span>
       ),
+    },
+    {
+      field: "symptoms",
+      headerName: "Symptoms",
+      flex: 1,
+      align: "center",
+      headerAlign: "center",
+      sortable: false,
+    },
+    {
+      field: "note",
+      headerName: "Notes",
+      flex: 1.5,
+      align: "center",
+      headerAlign: "center",
+      renderCell: (params) => <span>{params.value || "No Notes"}</span>,
+      sortable: false,
     },
     {
       field: "status",
@@ -80,37 +83,31 @@ const AppointmentsTable: React.FC<AppointmentsTableProps> = ({
         <Chip
           label={params.value}
           color={
-            params.value === "Pending"
+            params.value === AppointmentStatus.PENDING
               ? "info"
-              : params.value === "Confirmed"
+              : params.value === AppointmentStatus.CONFIRMED
               ? "warning"
               : "success"
           }
         />
       ),
-    },
-    {
-      field: "note",
-      headerName: "Note",
-      flex: 1.5,
-      align: "center",
-      headerAlign: "center",
-      renderCell: (params) => <span>{params.value || "No Notes"}</span>,
+      sortable: false,
     },
     {
       field: "actions",
       headerName: "Actions",
-      flex: 1,
+      flex: 0.75,
       align: "center",
       headerAlign: "center",
       renderCell: (params) => (
         <Action
           id={params.row.id}
-          currentNote={params.row.note}
+          currentNote={params.row.notes}
           currentStatus={params.row.status}
           onUpdate={onUpdateAppointment}
         />
       ),
+      sortable: false,
     },
   ];
 

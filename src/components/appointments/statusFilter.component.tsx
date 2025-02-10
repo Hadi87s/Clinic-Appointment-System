@@ -18,9 +18,9 @@ const StatusFilter: React.FC<StatusFilterProps> = ({
       onChange={(e) => setStatusFilter(e.target.value)}
     >
       <MenuItem value="All">All</MenuItem>
-      <MenuItem value="Pending">Pending</MenuItem>
-      <MenuItem value="Confirmed">Confirmed</MenuItem>
-      <MenuItem value="Completed">Completed</MenuItem>
+      <MenuItem value="pending">Pending</MenuItem>
+      <MenuItem value="confirmed">Confirmed</MenuItem>
+      <MenuItem value="completed">Completed</MenuItem>
     </Select>
   </FormControl>
 );

@@ -7,7 +7,8 @@ const useFilteredAppointments = (
 ): Appointment[] => {
   return appointments.filter(
     (appointment) =>
-      (statusFilter === "All" || appointment.status === statusFilter) &&
+      (statusFilter === "All" ||
+        appointment.status.toString() === statusFilter) &&
       appointment.patientName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 };
