@@ -8,12 +8,12 @@ interface IProps {
 const LgNavLink = (props: IProps) => {
   return (
     <Link
-      className={`transition duration-150 hover:text-white ${
-        location.pathname == props.path ? "border-b-2 rounded-b-[2px]" : ""
+      className={`transition duration-150 hover:text-white flex items-center ${
+        location.pathname == props.path ? "text-white" : ""
       }`}
       to={props.path}
     >
-      {props.children}
+      <span>{props.children}</span>
     </Link>
   );
 };

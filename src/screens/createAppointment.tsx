@@ -38,104 +38,160 @@ export default function CreateAppointment() {
 
   return (
     <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.2 }}
-    variants={{
-      hidden: { opacity: 0 },
-      visible: { opacity: 1, transition: { duration: 0.4 } },
-    }}
-  > 
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box
-        component="form"
-        onSubmit={handleSubmit(onSubmit)}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 3,
-          maxWidth: 600,
-          margin: "auto",
-          padding: 3,
-        }}
-      >
-        <Typography variant="h4" component="h1" gutterBottom>
-          Book Appointment
-        </Typography>
-
-        <Controller
-          name="bookedSlot"
-          control={control}
-          rules={{
-            required: "Appointment time is required",
-            validate: (value) => validateDateTime(value) || true,
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.4 } },
+      }}
+    >
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            maxWidth: 600,
+            margin: "auto",
+            padding: 3,
+            fontFamily: '"Fredoka", serif', // Apply Fredoka font to the entire form
           }}
-          render={({ field, fieldState: { error } }) => (
-            <DateTimePicker
-              label="Appointment Date & Time"
-              value={field.value}
-              onChange={field.onChange}
-              minDateTime={dayjs().startOf("minute")}
-              maxDateTime={dayjs().add(30, "day").endOf("day")}
-              shouldDisableTime={(date, view) => {
-                if (view === "hours") {
-                  const allMinutes = [0, 30];
-                  return allMinutes.every((minute) =>
-                    isTimeDisabled(date.set("minute", minute))
-                  );
-                }
-                if (view === "minutes") {
-                  return (
-                    date.hour() < 9 ||
-                    (date.hour() >= 17 &&
-                      bookedSlots.includes(date.toISOString()))
-                  );
-                }
-                return false;
-              }}
-              minutesStep={30}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  error: !!error,
-                  helperText:
-                    error?.message ||
-                    "Available slots between 9 AM - 5 PM (30-minute intervals)",
-                },
-                field: { clearable: true },
-              }}
-            />
-          )}
-        />
-
-        <TextField
-          label="Symptoms Description"
-          variant="outlined"
-          multiline
-          rows={4}
-          fullWidth
-          error={!!errors.symptoms}
-          helperText={errors.symptoms?.message}
-          {...register("symptoms", {
-            required: "Symptoms description is required",
-          })}
-        />
-
-        <Button type="submit" variant="contained" size="large" sx={{ mt: 2 }}>
-          Book Appointment
-        </Button>
-
-        <Snackbar
-          open={showConfirmation}
-          autoHideDuration={6000}
-          onClose={() => setShowConfirmation(false)}
         >
-          <Alert severity="success" sx={{ width: "100%" }}>
-            Appointment booked successfully!
-          </Alert>
-        </Snackbar>
-      </Box>
-    </LocalizationProvider>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{ fontFamily: '"Fredoka", serif' }}
+          >
+            Book Appointment
+          </Typography>
+
+          <Controller
+            name="bookedSlot"
+            control={control}
+            rules={{
+              required: "Appointment time is required",
+              validate: (value) => validateDateTime(value) || true,
+            }}
+            render={({ field, fieldState: { error } }) => (
+              <DateTimePicker
+                label="Appointment Date & Time"
+                value={field.value}
+                onChange={field.onChange}
+                minDateTime={dayjs().startOf("minute")}
+                maxDateTime={dayjs().add(30, "day").endOf("day")}
+                shouldDisableTime={(date, view) => {
+                  if (view === "hours") {
+                    const allMinutes = [0, 30];
+                    return allMinutes.every((minute) =>
+                      isTimeDisabled(date.set("minute", minute))
+                    );
+                  }
+                  if (view === "minutes") {
+                    return (
+                      date.hour() < 9 ||
+                      (date.hour() >= 17 &&
+                        bookedSlots.includes(date.toISOString()))
+                    );
+                  }
+                  return false;
+                }}
+                minutesStep={30}
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    error: !!error,
+                    helperText:
+                      error?.message ||
+                      "Available slots between 9 AM - 5 PM (30-minute intervals)",
+                    sx: {
+                      fontFamily: '"Fredoka", serif', // Apply Fredoka font
+                      "& .MuiOutlinedInput-root": {
+                        borderRadius: "10px", // Add border radius
+                        "& fieldset": {
+                          borderColor: "#1E40AF", // Change border color
+                        },
+                        "&:hover fieldset": {
+                          borderColor: "#1E40AF", // Change hover border color
+                        },
+                        "&.Mui-focused fieldset": {
+                          borderColor: "#1E40AF", // Change focused border color
+                        },
+                      },
+                    },
+                  },
+                  field: { clearable: true },
+                }}
+              />
+            )}
+          />
+
+          <TextField
+            label="Symptoms Description"
+            variant="outlined"
+            multiline
+            rows={4}
+            fullWidth
+            error={!!errors.symptoms}
+            helperText={errors.symptoms?.message}
+            {...register("symptoms", {
+              required: "Symptoms description is required",
+            })}
+            sx={{
+              fontFamily: '"Fredoka", serif', // Apply Fredoka font
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "10px", // Add border radius
+                "& fieldset": {
+                  borderColor: "#1E40AF", // Change border color
+                },
+                "&:hover fieldset": {
+                  borderColor: "#1E40AF", // Change hover border color
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#1E40AF", // Change focused border color
+                },
+              },
+            }}
+          />
+
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            sx={{
+              mt: 2,
+              fontFamily: '"Fredoka", serif', // Apply Fredoka font
+              borderRadius: "10px", // Add border radius
+              backgroundColor: "#1E40AF", // Change button color
+              "&:hover": {
+                backgroundColor: "#1E3A8A", // Change hover color
+              },
+            }}
+          >
+            Book Appointment
+          </Button>
+
+          <Snackbar
+            open={showConfirmation}
+            autoHideDuration={6000}
+            onClose={() => setShowConfirmation(false)}
+          >
+            <Alert
+              severity="success"
+              sx={{
+                width: "100%",
+                fontFamily: '"Fredoka", serif', // Apply Fredoka font
+                borderRadius: "10px", // Add border radius
+              }}
+            >
+              Appointment booked successfully!
+            </Alert>
+          </Snackbar>
+        </Box>
+      </LocalizationProvider>
     </motion.div>
   );
 }

@@ -4,10 +4,12 @@ import AppointmentCard from "../components/appointment-card/AppointmentCard";
 import { useAppointments } from "../providers/appointmentsProvider";
 import { AppointmentActionKind } from "../reducer/appointmentsReducer";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useContext } from "react";
+import { authContext } from "../providers/authProvider";
 
 const ViewAppointment = () => {
   const { state, dispatch } = useAppointments();
-
+  const { user } = useContext(authContext);
   const handleAppointmentCancellation = (id: string) => {
     dispatch({
       type: AppointmentActionKind.REMOVE,
@@ -42,12 +44,17 @@ const ViewAppointment = () => {
         </div>
       ) : (
         <div>
-          {state.appointments.map((app) => (
-            <AppointmentCard
-              appointment={app}
-              onCancel={handleAppointmentCancellation}
-            />
-          ))}
+          <div className="text-4xl md:text-5xl text-blue-700 font-[600] text-center mb-10">{`${
+            user?.fullName.split(" ")[0]
+          }'s Appointments`}</div>
+          <div className="flex gap-5 flex-wrap">
+            {state.appointments.map((app) => (
+              <AppointmentCard
+                appointment={app}
+                onCancel={handleAppointmentCancellation}
+              />
+            ))}
+          </div>
         </div>
       )}
     </motion.div>
