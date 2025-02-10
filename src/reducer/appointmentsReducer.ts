@@ -2,6 +2,7 @@ import { Appointment } from "../types/@types";
 
 export enum AppointmentActionKind {
   ADD = "ADD_APPOINTMENT",
+  UPDATE = "UPDATE_APPOINTMENT",
 }
 
 export type AppointmentState = {
@@ -12,10 +13,12 @@ export const INITIAL_APPOINTMENT: AppointmentState = {
   appointments: [],
 };
 
-export type AppointmentAction = {
-  type: AppointmentActionKind;
-  payload: { appointment: Appointment };
-};
+export type AppointmentAction =
+  | { type: AppointmentActionKind.ADD; payload: { appointment: Appointment } }
+  | {
+      type: AppointmentActionKind.UPDATE;
+      payload: { id: string; updatedData: Partial<Appointment> };
+    };
 
 export const appointmentReducer = (
   state: AppointmentState,
@@ -27,6 +30,17 @@ export const appointmentReducer = (
         ...state,
         appointments: [...state.appointments, action.payload.appointment],
       };
+
+    case AppointmentActionKind.UPDATE:
+      return {
+        ...state,
+        appointments: state.appointments.map((appointment) =>
+          appointment.id === action.payload.id
+            ? { ...appointment, ...action.payload.updatedData }
+            : appointment
+        ),
+      };
+
     default:
       return state;
   }
