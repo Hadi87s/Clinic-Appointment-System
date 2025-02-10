@@ -1,4 +1,4 @@
-import { Appointment } from "../screens/viewAppointment";
+import { Appointment } from "../types/@types";
 
 const useFilteredAppointments = (
   appointments: Appointment[],

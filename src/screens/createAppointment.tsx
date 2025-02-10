@@ -7,10 +7,6 @@ import {
   Typography,
   Alert,
   Snackbar,
-  FormControl,
-  MenuItem,
-  InputLabel,
-  Select,
 } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -18,6 +14,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import { useAppointmentForm } from "../hooks/useAppointmentForm";
 import { FormData } from "../types/@types";
+import { motion } from "framer-motion";
 
 export default function CreateAppointment() {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -40,6 +37,15 @@ export default function CreateAppointment() {
   };
 
   return (
+    <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+    variants={{
+      hidden: { opacity: 0 },
+      visible: { opacity: 1, transition: { duration: 0.4 } },
+    }}
+  > 
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box
         component="form"
@@ -130,5 +136,6 @@ export default function CreateAppointment() {
         </Snackbar>
       </Box>
     </LocalizationProvider>
+    </motion.div>
   );
 }
