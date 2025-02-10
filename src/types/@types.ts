@@ -36,10 +36,6 @@ export interface Appointment {
 }
 
 export interface FormData {
-  patientName: string;
-  contact: string;
-  age: number;
-  gender: string;
-  appointmentDateTime: Dayjs | null;
+  bookedSlot: Dayjs | null;
   symptoms: string;
 }
