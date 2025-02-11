@@ -15,10 +15,6 @@ const links = [
     path: "/about",
     title: "About Us",
   },
-  {
-    path: "/create-appointment",
-    title: "Book Now",
-  },
 ];
 
 const securedLinks = [
@@ -35,6 +31,11 @@ const securedLinks = [
   {
     path: "/view-appointment",
     title: "View Appointments",
+    role: Role.patient,
+  },
+  {
+    path: "/create-appointment",
+    title: "Book Now",
     role: Role.patient,
   },
 ];

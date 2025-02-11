@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
   const { login, singedUpUsers } = useContext(authContext);
 
@@ -19,13 +20,27 @@ const Login = () => {
     navigate("/");
   };
 
+  const credentialCheck = (
+    userEmail: string,
+    userPassword: string
+  ): boolean => {
+    if (email === userEmail) {
+      if (password === userPassword) {
+        setPasswordError(false);
+        return true;
+      } else setPasswordError(true);
+      return false;
+    }
+    return false;
+  };
+
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setEmailError(!password);
 
     if (validateCredentials(email)) {
       singedUpUsers.forEach((signedUser) => {
-        signedUser.email === email && signedUser.password === password
+        credentialCheck(signedUser.email, signedUser.password)
           ? logUserIn(signedUser)
           : null;
       });
@@ -109,6 +124,8 @@ const Login = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          error={passwordError}
+          helperText={passwordError ? "Wrong password" : ""}
           sx={{
             fontFamily: '"Fredoka", serif',
             "& .MuiOutlinedInput-root": {

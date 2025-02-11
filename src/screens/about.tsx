@@ -7,10 +7,7 @@ const cardVariants = {
 
 const AboutUs = () => {
   return (
-    <div
-      className="min-h-screen w-[100%] h-[100vh] absolute inset-0"
-
-    >
+    <div className="min-h-screen w-[100%] h-[100vh] absolute inset-0">
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8 mt-25">
         <h1 className="text-4xl font-bold text-center text-blue-800 mb-6">
           About Us
