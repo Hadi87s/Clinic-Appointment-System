@@ -16,7 +16,7 @@ const Landing = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="flex flex-row ">
+      <div className="flex flex-row">
         <motion.div
           initial="hidden"
           whileInView="visible"

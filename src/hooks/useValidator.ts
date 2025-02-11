@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import { authContext } from "../providers/authProvider";
 
-export function validateCredentials(email: string, password: string) {
+export function validateCredentials(email: string) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  return emailRegex.test(email) && passwordRegex.test(password);
+  return emailRegex.test(email);
 }
 
 export interface User {

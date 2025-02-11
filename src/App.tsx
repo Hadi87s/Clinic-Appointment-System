@@ -14,6 +14,8 @@ import NotLogged from "./components/Protected/notLogged";
 import { AppointmentsProvider } from "./providers/appointmentsProvider";
 import Signup from "./screens/signup";
 import AboutUs from "./screens/about";
+import GlobalThemeProvider from "./providers/themeProvider";
+import { Role } from "./types/@types";
 
 const routes = createBrowserRouter([
   {
@@ -31,7 +33,7 @@ const routes = createBrowserRouter([
       {
         path: "/manage-appointments",
         element: (
-          <Protected>
+          <Protected role={Role.doctor}>
             <ManageAppointments />
           </Protected>
         ),
@@ -39,7 +41,7 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <Protected>
+          <Protected role={Role.doctor}>
             <Dashboard />
           </Protected>
         ),
@@ -47,9 +49,11 @@ const routes = createBrowserRouter([
       {
         path: "/view-appointment",
         element: (
-          <NotLogged>
-            <ViewAppointment />
-          </NotLogged>
+          <Protected role={Role.patient}>
+            <NotLogged>
+              <ViewAppointment />
+            </NotLogged>
+          </Protected>
         ),
       },
       {
@@ -79,11 +83,13 @@ const routes = createBrowserRouter([
 const App = () => {
   return (
     <div>
-      <AppointmentsProvider>
-        <AuthProvider>
-          <RouterProvider router={routes} />
-        </AuthProvider>
-      </AppointmentsProvider>
+      <GlobalThemeProvider>
+        <AppointmentsProvider>
+          <AuthProvider>
+            <RouterProvider router={routes} />
+          </AuthProvider>
+        </AppointmentsProvider>
+      </GlobalThemeProvider>
     </div>
   );
 };

@@ -65,7 +65,7 @@ const Signup = () => {
       contactNumber: formData.contactNumber,
       age: formData.age,
       gender: formData.gender,
-      role: Role.doctor,
+      role: Role.patient,
     };
 
     console.log(isValid);

@@ -6,6 +6,8 @@ import { useContext, useState } from "react";
 import { Menu, X } from "lucide-react";
 import LargeScreensNav from "../lg-navbar/LargeScreensNav";
 import SmallScreensNavbar from "../sm-navbar/SmallScreensNavbar";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
@@ -35,11 +37,12 @@ const Navbar = () => {
             Login
           </Link>
         ) : (
-          <div className="hidden lg:flex gap-2">
-            <span className="flex items-center text-white">
-              {user.fullName.split(" ")[0]}
-            </span>
-            <div className="font-[500] bg-blue-100 text-blue-900 p-4 flex  items-center rounded-2xl ring-1 hover:ring-blue-400 hover:bg-blue-700 hover:text-blue-100 transition duration-200 cursor-pointer">
+          <div className="hidden lg:flex gap-2 items-center">
+            <div className="flex items-center text-white relative">
+              <span className="text-[15px]">{user.fullName.split(" ")[0]}</span>
+              <Person4RoundedIcon fontSize="medium" />
+            </div>
+            <div className="font-[500] bg-blue-100 text-blue-900 p-2 flex  items-center rounded-2xl ring-1 hover:ring-blue-400 hover:bg-blue-700 hover:text-blue-100 transition duration-200 cursor-pointer">
               <Link
                 onClick={(e) => {
                   e.preventDefault();
@@ -48,7 +51,7 @@ const Navbar = () => {
                 }}
                 to="/"
               >
-                Logout
+                <LogoutRoundedIcon fontSize="small" />
               </Link>
             </div>
           </div>

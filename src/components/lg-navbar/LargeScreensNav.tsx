@@ -1,10 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
 import { IUser, Role } from "../../types/@types";
 import LgNavLink from "../navbar/lgNavLink";
+import SecuredNavLink from "../securedNavLink/SecuredNavLink";
 
 interface IProps {
   user: IUser | null;
 }
+
 const links = [
   {
     path: "/",
@@ -16,16 +17,29 @@ const links = [
   },
   {
     path: "/create-appointment",
-    title: "Create Appointment",
+    title: "Book Now",
+  },
+];
+
+const securedLinks = [
+  {
+    path: "/dashboard",
+    title: "Dashboard",
+    role: Role.doctor,
+  },
+  {
+    path: "/manage-appointments",
+    title: "Manage",
+    role: Role.doctor,
   },
   {
     path: "/view-appointment",
     title: "View Appointments",
+    role: Role.patient,
   },
 ];
 
 const LargeScreensNav = (props: IProps) => {
-  const location = useLocation();
   return (
     <div className="hidden lg:flex gap-5 ">
       {links.map((link, index) => (
@@ -34,26 +48,17 @@ const LargeScreensNav = (props: IProps) => {
         </LgNavLink>
       ))}
 
-      {props.user?.role === Role.doctor ? (
-        <Link
-          className={`transition duration-150 hover:text-white flex items-center ${
-            location.pathname == "/dashboard" ? "text-white" : ""
-          }`}
-          to="/dashboard"
-        >
-          <span>Dashboard</span>
-        </Link>
-      ) : null}
-      {props.user?.role === Role.doctor ? (
-        <Link
-          className={`transition duration-150 hover:text-white flex items-center ${
-            location.pathname == "/manage-appointments" ? "text-white" : ""
-          }`}
-          to="/manage-appointments"
-        >
-          <span>Manage</span>
-        </Link>
-      ) : null}
+      {securedLinks.map((link, index) => {
+        return (
+          <SecuredNavLink
+            key={index}
+            user={props.user}
+            role={link.role}
+            path={link.path}
+            title={link.title}
+          />
+        );
+      })}
     </div>
   );
 };

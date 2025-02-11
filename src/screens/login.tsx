@@ -10,7 +10,7 @@ import { IUser } from "../types/@types";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const navigate = useNavigate();
   const { login, singedUpUsers } = useContext(authContext);
 
@@ -21,16 +21,16 @@ const Login = () => {
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setPasswordError(!password);
+    setEmailError(!password);
 
-    if (validateCredentials(email, password)) {
+    if (validateCredentials(email)) {
       singedUpUsers.forEach((signedUser) => {
         signedUser.email === email && signedUser.password === password
           ? logUserIn(signedUser)
           : null;
       });
     } else {
-      setPasswordError(true);
+      setEmailError(true);
     }
   };
 
@@ -81,6 +81,8 @@ const Login = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          error={emailError}
+          helperText={emailError ? "Invalid email address." : ""}
           sx={{
             fontFamily: '"Fredoka", serif',
             "& .MuiOutlinedInput-root": {
@@ -107,8 +109,6 @@ const Login = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          error={passwordError}
-          helperText={passwordError ? "Wrong Email or Password" : ""}
           sx={{
             fontFamily: '"Fredoka", serif',
             "& .MuiOutlinedInput-root": {
