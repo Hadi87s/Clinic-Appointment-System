@@ -15,6 +15,9 @@ export interface IUser {
   age: string,
   gender: string,
   role: Role;
+  instagram?: string ,
+  facebook?: string,
+  linkedin?: string,
 }
 
 export enum Role {

@@ -7,13 +7,23 @@ import {
   Box,
   IconButton,
   Snackbar,
+  Stack
 } from "@mui/material";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { authContext } from "../../providers/authProvider";
 
 const UserProfile = () => {
+  const { user, updateUser } = useContext(authContext);
   const [avatar, setAvatar] = useState<string | null>(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [passwords, setPasswords] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+
+  const [error, setError] = useState("");
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -29,11 +39,37 @@ const UserProfile = () => {
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswords({ ...passwords, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    if (!user) {
+      setError("User not found. Please log in again.");
+      return;
+    }
+
+    if (passwords.currentPassword !== user.password) {
+      setError("Current password is incorrect.");
+      return;
+    }
+
+    if (passwords.newPassword !== passwords.confirmPassword) {
+      setError("New passwords do not match.");
+      return;
+    }
+
+    const updatedUser = { ...user, password: passwords.newPassword };
+    updateUser(updatedUser); // Update the context with new password
+    setOpenSnackbar(true);
+    setPasswords({ currentPassword: "", newPassword: "", confirmPassword: "" });
+  };
+
   return (
-    <Container
-      maxWidth="sm"
-      className="flex flex-col items-center py-10 space-y-6"
-    >
+    <Container maxWidth="sm" className="flex flex-col items-center py-10 space-y-6">
       {/* Avatar Upload Section */}
       <div className="relative group">
         <Avatar
@@ -47,117 +83,91 @@ const UserProfile = () => {
           className="mb-4 shadow-lg ring-4 ring-blue-100"
           src={avatar || undefined}
         >
-          {!avatar && "U"}
+          {!avatar && user?.fullName?.[0]}
         </Avatar>
 
         <IconButton
           component="label"
           className="absolute bottom-0 right-0 bg-blue-500 hover:bg-blue-600 transition-colors duration-200 shadow-md"
-          sx={{
-            p: 1.5,
-            "&:hover": { bgcolor: "#2563eb" },
-          }}
+          sx={{ p: 1.5, "&:hover": { bgcolor: "#2563eb" } }}
         >
           <CameraAltIcon className="text-white" />
-          <input
-            type="file"
-            hidden
-            accept="image/*"
-            onChange={handleFileUpload}
-          />
+          <input type="file" hidden accept="image/*" onChange={handleFileUpload} />
         </IconButton>
       </div>
 
       {/* User Name */}
-      <Typography
-        variant="h5"
-        className="mb-4 font-bold text-gray-900 text-center"
-      >
-        User Name
+      <Typography variant="h5" className="mb-4 font-bold text-gray-900 text-center">
+        {user?.fullName || "User Name"}
       </Typography>
 
       {/* Change Password Form */}
       <Box
         component="form"
+        onSubmit={handleSubmit}
         className="w-full space-y-4 bg-white p-8 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
       >
-        <TextField
-          label="Current Password"
-          type="password"
-          fullWidth
-          required
-          variant="outlined"
-          className="rounded-lg"
-          sx={{
-            "& .MuiOutlinedInput-root": {
+        <Stack spacing={2}>
+          <TextField
+            label="Current Password"
+            name="currentPassword"
+            type="password"
+            fullWidth
+            required
+            variant="outlined"
+            value={passwords.currentPassword}
+            onChange={handleChange}
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: "12px" } }}
+          />
+          <TextField
+            label="New Password"
+            name="newPassword"
+            type="password"
+            fullWidth
+            required
+            variant="outlined"
+            value={passwords.newPassword}
+            onChange={handleChange}
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: "12px" } }}
+          />
+          <TextField
+            label="Confirm New Password"
+            name="confirmPassword"
+            type="password"
+            fullWidth
+            required
+            variant="outlined"
+            value={passwords.confirmPassword}
+            onChange={handleChange}
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: "12px" } }}
+          />
+
+          {error && <Typography color="error">{error}</Typography>}
+
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            sx={{
+              mt: 2,
+              bgcolor: "#3b82f6",
+              "&:hover": { bgcolor: "#2563eb", transform: "scale(1.02)" },
+              py: 1.5,
               borderRadius: "12px",
-              transition: "box-shadow 0.3s ease",
-              "&:hover": {
-                boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.1)",
-              },
-            },
-          }}
-        />
-        <TextField
-          label="New Password"
-          type="password"
-          fullWidth
-          required
-          variant="outlined"
-          className="rounded-lg"
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "12px",
-              transition: "box-shadow 0.3s ease",
-              "&:hover": {
-                boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.1)",
-              },
-            },
-          }}
-        />
-        <TextField
-          label="Confirm New Password"
-          type="password"
-          fullWidth
-          required
-          variant="outlined"
-          className="rounded-lg"
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "12px",
-              transition: "box-shadow 0.3s ease",
-              "&:hover": {
-                boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.1)",
-              },
-            },
-          }}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{
-            mt: 2,
-            bgcolor: "#3b82f6",
-            "&:hover": {
-              bgcolor: "#2563eb",
-              transform: "scale(1.02)",
-            },
-            py: 1.5,
-            borderRadius: "12px",
-            transition: "all 0.3s ease",
-          }}
-          className="rounded-lg text-white shadow-md"
-        >
-          Update Password
-        </Button>
+              transition: "all 0.3s ease",
+            }}
+            className="rounded-lg text-white shadow-md"
+          >
+            Update Password
+          </Button>
+        </Stack>
       </Box>
 
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}
         onClose={() => setOpenSnackbar(false)}
-        message="Avatar updated successfully!"
+        message="Password updated successfully!"
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       />
     </Container>

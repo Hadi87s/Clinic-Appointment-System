@@ -24,25 +24,19 @@ export const authContext = createContext<{
   login: (user: IUser) => void;
   logout: () => void;
   signUserUp: (signedUser: IUser) => void;
+  updateUser: (updatedUser: IUser) => void;
 }>({
   user: null,
   singedUpUsers: [],
   login: () => {},
   logout: () => {},
   signUserUp: () => {},
+  updateUser: () => {},
 });
 
 const AuthProvider = (props: IProps) => {
-  // const [user, setUser] = useState<IUser | null>(null);
-  const [user, setUser] = usePersistentState<IUser | null>(
-    "user",
-    INITIAL_USER
-  );
-
-  const [singedUpUsers, setSignedUpUsers] = usePersistentState<IUser[]>(
-    "signedUp",
-    []
-  );
+  const [user, setUser] = usePersistentState<IUser | null>("user", INITIAL_USER);
+  const [singedUpUsers, setSignedUpUsers] = usePersistentState<IUser[]>("signedUp", []);
 
   const signUserUp = (signedUser: IUser) => {
     setSignedUpUsers((old) => [...old, signedUser]);
@@ -56,17 +50,26 @@ const AuthProvider = (props: IProps) => {
     setUser(null);
   };
 
+  const updateUser = (updatedUser: IUser) => {
+    setSignedUpUsers((oldUsers) =>
+      oldUsers.map((user) => (user.id === updatedUser.id ? { ...user, ...updatedUser } : user))
+    );
+
+    if (user?.id === updatedUser.id) {
+      setUser(updatedUser);
+    }
+  };
+
   const value = {
     user,
     singedUpUsers,
     login,
     logout,
     signUserUp,
+    updateUser,
   };
 
-  return (
-    <authContext.Provider value={value}> {props.children}</authContext.Provider>
-  );
+  return <authContext.Provider value={value}>{props.children}</authContext.Provider>;
 };
 
 export default AuthProvider;
