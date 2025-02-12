@@ -2,11 +2,11 @@ import { IUser, Role } from "../../types/@types";
 import LgNavLink from "../navbar/lgNavLink";
 import SecuredNavLink from "../securedNavLink/SecuredNavLink";
 
-interface IProps {
+export interface INav{
   user: IUser | null;
 }
 
-const links = [
+export const links = [
   {
     path: "/",
     title: "Home",
@@ -17,7 +17,7 @@ const links = [
   },
 ];
 
-const securedLinks = [
+export const securedLinks = [
   {
     path: "/dashboard",
     title: "Dashboard",
@@ -40,9 +40,9 @@ const securedLinks = [
   },
 ];
 
-const LargeScreensNav = (props: IProps) => {
+const LgScreenLinks = (props: INav) => {
   return (
-    <div className="hidden lg:flex gap-5 ">
+    <div className=" hidden lg:flex gap-5 ">
       {links.map((link, index) => (
         <LgNavLink key={index} path={link.path}>
           {link.title}
@@ -64,4 +64,4 @@ const LargeScreensNav = (props: IProps) => {
   );
 };
 
-export default LargeScreensNav;
+export default LgScreenLinks;

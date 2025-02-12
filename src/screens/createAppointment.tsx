@@ -54,7 +54,7 @@ export default function CreateAppointment() {
       }}
       className="w-[100vw] h-[100vh] absolute inset-0 flex justify-center content-center"
     >
-      <div className="mt-25 p-4 bg-white rounded-2xl h-fit min-w-xl transition-shadow duration-150 shadow-md hover:shadow-lg">
+      <div className="mt-25 p-4 bg-white rounded-2xl h-fit lg:min-w-xl transition-shadow duration-150 shadow-md hover:shadow-lg">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Box
             component="form"

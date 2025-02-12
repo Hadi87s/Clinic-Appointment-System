@@ -32,7 +32,7 @@ const ContactUs = () => {
               rows={4}
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition">
+            <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition cursor-pointer">
               Send Message
             </button>
           </form>
