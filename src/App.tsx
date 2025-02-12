@@ -16,6 +16,8 @@ import Signup from "./screens/signup";
 import AboutUs from "./screens/about";
 import GlobalThemeProvider from "./providers/themeProvider";
 import { Role } from "./types/@types";
+import UserProfile from "./components/profile-pages/UserProfile";
+import AdminProfile from "./components/profile-pages/AdminProfile";
 
 const routes = createBrowserRouter([
   {
@@ -73,6 +75,14 @@ const routes = createBrowserRouter([
       {
         path: "/about",
         element: <AboutUs />,
+      },
+      {
+        path: "/user/:id",
+        element: <UserProfile />,
+      },
+      {
+        path: "/admin/:id",
+        element: <AdminProfile />,
       },
       {
         path: "*",

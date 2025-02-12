@@ -8,6 +8,7 @@ import LgScreenLinks from "../navbar-links/LgScreenLinks";
 import SmallScreensNavbar from "../sm-navbar/SmallScreensNavbar";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
+import { Role } from "../../types/@types";
 
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
@@ -55,7 +56,14 @@ const Navbar = () => {
           </Link>
         ) : (
           <div className="hidden lg:flex gap-2 items-center">
-            <div className="flex items-center text-white relative">
+            <div
+              onClick={() => {
+                user.role === Role.patient
+                  ? navigate(`/user/${user.id}`)
+                  : navigate(`/admin/${user.id}`);
+              }}
+              className="flex items-center text-white relative"
+            >
               <span className="text-[15px]">{user.fullName.split(" ")[0]}</span>
               <Person4RoundedIcon fontSize="medium" />
             </div>
