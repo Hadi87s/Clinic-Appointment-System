@@ -50,24 +50,23 @@ const Navbar = () => {
         {!user ? (
           <Link
             to="/login"
-            className="hidden lg:flex font-[500] bg-blue-100 text-blue-900 p-4   items-center rounded-2xl ring-1 hover:ring-blue-400 hover:bg-blue-700 hover:text-blue-100 transition duration-200 cursor-pointer"
+            className="hidden lg:flex font-[500] bg-blue-100 text-blue-900 p-4 items-center rounded-2xl ring-1 hover:ring-blue-400 hover:bg-blue-700 hover:text-blue-100 transition duration-200 cursor-pointer"
           >
             Login
           </Link>
         ) : (
-          <div className="hidden lg:flex gap-2 items-center">
+          <div className="hidden lg:flex gap-2 items-center bg-blue-200 py-3 rounded-4xl">
             <div
               onClick={() => {
-                user.role === Role.patient
-                  ? navigate(`/user/${user.id}`)
-                  : navigate(`/admin/${user.id}`);
+                user.role === Role.doctor
+                  ? navigate(`/admin/${user.id}`)
+                  : navigate(`/user/${user.id}`);
               }}
-              className="flex items-center text-white relative"
+              className="cursor-pointer flex items-center text-blue-900 relative bg-blue-100 px-3 py-1 rounded-[50%] border-3 transition duration-150 hover:border-blue-200 hover:bg-blue-700 hover:text-blue-100"
             >
-              <span className="text-[15px]">{user.fullName.split(" ")[0]}</span>
-              <Person4RoundedIcon fontSize="medium" />
+              <span className="text-2xl">{user.fullName.slice(0, 1)}</span>
             </div>
-            <div className="font-[500] bg-blue-100 text-blue-900 p-2 flex  items-center rounded-2xl ring-1 hover:ring-blue-400 hover:bg-blue-700 hover:text-blue-100 transition duration-200 cursor-pointer">
+            <div className="font-[500] bg-blue-100 text-blue-900 flex  items-center px-2.5 py-2 rounded-[50%] border-3 hover:border-blue-200 hover:bg-blue-700 hover:text-blue-100 transition duration-200 cursor-pointer">
               <Link
                 onClick={(e) => {
                   e.preventDefault();
@@ -86,10 +85,9 @@ const Navbar = () => {
             e.stopPropagation();
             setMenuVisible(!menuVisible);
           }}
-          className="flex lg:hidden cursor-pointer z-10"
+          className="flex items-center lg:hidden cursor-pointer z-10"
         >
-          {" "}
-          {!menuVisible ? <Menu /> : <X />}
+          {!menuVisible ? <Menu fontWeight="bold" /> : <X />}
         </div>
       </div>
     </div>
