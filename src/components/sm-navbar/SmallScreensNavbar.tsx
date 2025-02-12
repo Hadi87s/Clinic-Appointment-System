@@ -20,7 +20,7 @@ const SmallScreensNavbar = (props: IProps) => {
           ? "translate-x-0 opacity-100"
           : "translate-x-full opacity-0"
       } transition duration-300 flex flex-col justify-center bg-gradient-to-r from-blue-900/95 to-blue-500/85
-        backdrop-blur-[2px] mt-10 text-center p-4 gap-1 absolute -top-[50px] -right-[30px] min-h-screen w-[370px] border-l-2 border-blue-900`}
+        backdrop-blur-[2px] mt-10 text-center p-4 gap-1 absolute -top-[50px] -right-[50px] md:-right-[70px] min-h-screen w-[370px] border-l-2 border-blue-900`}
     >
       <span className="flex justify-center items-center text-white">
         <Person4RoundedIcon fontSize="medium" />
