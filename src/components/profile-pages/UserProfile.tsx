@@ -7,7 +7,7 @@ import {
   Box,
   IconButton,
   Snackbar,
-  Stack
+  Stack,
 } from "@mui/material";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { useState, useContext } from "react";
@@ -17,12 +17,12 @@ const UserProfile = () => {
   const { user, updateUser } = useContext(authContext);
   const [avatar, setAvatar] = useState<string | null>(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const [passwords, setPasswords] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
-
   const [error, setError] = useState("");
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,13 @@ const UserProfile = () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result) {
-          setAvatar(e.target.result as string);
+          const newAvatar = e.target.result as string;
+          setAvatar(newAvatar);
+          if (user) {
+            const updatedUser = { ...user, avatar: newAvatar };
+            updateUser(updatedUser);
+          }
+          setSnackbarMessage("Profile picture updated successfully!");
           setOpenSnackbar(true);
         }
       };
@@ -69,9 +75,12 @@ const UserProfile = () => {
   };
 
   return (
-    <Container maxWidth="sm" className="flex flex-col items-center py-10 space-y-6">
+    <Container
+      maxWidth="sm"
+      className="flex flex-col items-center py-10 space-y-6"
+    >
       {/* Avatar Upload Section */}
-      <div className="relative group">
+      <div className="relative">
         <Avatar
           sx={{
             width: 120,
@@ -79,8 +88,9 @@ const UserProfile = () => {
             bgcolor: "#3b82f6",
             transition: "transform 0.3s ease",
             "&:hover": { transform: "scale(1.05)" },
+            position: "relative",
           }}
-          className="mb-4 shadow-lg ring-4 ring-blue-100"
+          className="mb-4 shadow-lg ring-4 ring-blue-200"
           src={avatar || undefined}
         >
           {!avatar && user?.fullName?.[0]}
@@ -88,17 +98,36 @@ const UserProfile = () => {
 
         <IconButton
           component="label"
-          className="absolute bottom-0 right-0 bg-blue-500 hover:bg-blue-600 transition-colors duration-200 shadow-md"
-          sx={{ p: 1.5, "&:hover": { bgcolor: "#2563eb" } }}
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            transform: "translate(30%, 30%)",
+            bgcolor: "background.paper",
+            p: 1,
+            border: "2px solid",
+            borderColor: "divider",
+            "&:hover": {
+              bgcolor: "action.hover",
+            },
+          }}
         >
-          <CameraAltIcon className="text-white" />
-          <input type="file" hidden accept="image/*" onChange={handleFileUpload} />
+          <CameraAltIcon sx={{ fontSize: "1rem", color: "text.secondary" }} />
+          <input
+            type="file"
+            hidden
+            accept="image/*"
+            onChange={handleFileUpload}
+          />
         </IconButton>
       </div>
 
       {/* User Name */}
-      <Typography variant="h5" className="mb-4 font-bold text-gray-900 text-center">
-        {user?.fullName || "User Name"}
+      <Typography
+        variant="h5"
+        className="mb-4 font-bold text-gray-900 text-center"
+      >
+        {user?.fullName || "Unknown"}
       </Typography>
 
       {/* Change Password Form */}
@@ -165,9 +194,9 @@ const UserProfile = () => {
 
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         onClose={() => setOpenSnackbar(false)}
-        message="Password updated successfully!"
+        message={snackbarMessage}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       />
     </Container>

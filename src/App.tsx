@@ -61,11 +61,9 @@ const routes = createBrowserRouter([
       {
         path: "/create-appointment",
         element: (
-          <Protected role={Role.patient}>
-            <NotLogged>
-              <CreateAppointment />
-            </NotLogged>
-          </Protected>
+          <NotLogged>
+            <CreateAppointment />
+          </NotLogged>
         ),
       },
       {
