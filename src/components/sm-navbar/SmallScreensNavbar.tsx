@@ -1,7 +1,6 @@
 import { IUser, Role } from "../../types/@types";
 import { Link, useNavigate } from "react-router-dom";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 import SmScreenLinks from "../navbar-links/SmScreenLinks";
 
 interface IProps {

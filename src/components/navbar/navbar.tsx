@@ -7,7 +7,6 @@ import { Menu, X } from "lucide-react";
 import LgScreenLinks from "../navbar-links/LgScreenLinks";
 import SmallScreensNavbar from "../sm-navbar/SmallScreensNavbar";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 import { Role } from "../../types/@types";
 
 const Navbar = () => {

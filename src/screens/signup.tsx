@@ -18,7 +18,6 @@ import { v4 as uuid } from "uuid";
 import { authContext } from "../providers/authProvider";
 import { IUser, Role } from "../types/@types";
 import { useValidateUser } from "../hooks/useValidator";
-import AddIcon from "@mui/icons-material/Add";
 
 const INITIAL_USER = {
   fullName: "",
