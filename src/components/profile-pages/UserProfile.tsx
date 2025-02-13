@@ -12,6 +12,7 @@ import {
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { useState, useContext } from "react";
 import { authContext } from "../../providers/authProvider";
+import { motion } from "framer-motion";
 
 const UserProfile = () => {
   const { user, updateUser } = useContext(authContext);
@@ -75,6 +76,15 @@ const UserProfile = () => {
   };
 
   return (
+    <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+    variants={{
+      hidden: { opacity: 0 },
+      visible: { opacity: 1, transition: { duration: 0.4 } },
+    }}
+  >
     <Container
       maxWidth="sm"
       className="flex flex-col items-center py-10 space-y-6"
@@ -200,6 +210,7 @@ const UserProfile = () => {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       />
     </Container>
+    </motion.div>
   );
 };
 

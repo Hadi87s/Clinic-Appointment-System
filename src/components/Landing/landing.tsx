@@ -11,7 +11,7 @@ const Landing = () => {
     <div
       className="w-[100%] h-[100vh] absolute inset-0 "
       style={{
-        backgroundImage: `url(${"../../../public/landingBackground.svg"})`,
+        backgroundImage: `url(${"/landingBackground.svg"})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -48,7 +48,7 @@ const Landing = () => {
         <div
           className="hidden lg:block w-[500px] h-[730px]"
           style={{
-            backgroundImage: `url(${"../../../public/doctor.png"})`,
+            backgroundImage: `url(${"/doctor.png"})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

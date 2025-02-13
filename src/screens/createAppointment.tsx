@@ -48,7 +48,7 @@ export default function CreateAppointment() {
         visible: { opacity: 1, transition: { duration: 0.4 } },
       }}
       style={{
-        backgroundImage: `url(${"../../../public/landingBackground.svg"})`,
+        backgroundImage: `url(${"/landingBackground.svg"})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
