@@ -1,5 +1,5 @@
 import { Box, Typography, Stack } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppointmentsTable from "../components/appointments/appointmentsTable.component";
 import SearchBar from "../components/appointments/searchBar.component";
 import StatusFilter from "../components/appointments/statusFilter.component";
@@ -8,10 +8,12 @@ import { useAppointments } from "../providers/appointmentsProvider";
 import { Appointment } from "../types/@types";
 import { AppointmentActionKind } from "../reducer/appointmentsReducer";
 import { motion } from "framer-motion";
+import { useSearchParams } from "react-router-dom";
 
 const ManageAppointments: React.FC = () => {
   const { state, dispatch } = useAppointments();
   const [statusFilter, setStatusFilter] = useState<string>("All");
+  const [params, setParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const filteredAppointments = useFilteredAppointments(
@@ -29,6 +31,20 @@ const ManageAppointments: React.FC = () => {
       payload: { id, updatedData },
     });
   };
+
+  useEffect(() => {
+    if (searchQuery === "") {
+      params.delete("search");
+    } else {
+      params.set("search", searchQuery);
+    }
+    if (statusFilter == "All") {
+      params.delete("status");
+    } else {
+      params.set("status", statusFilter);
+    }
+    setParams(params);
+  }, [searchQuery, statusFilter]);
 
   return (
     <motion.div
