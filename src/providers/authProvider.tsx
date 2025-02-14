@@ -1,22 +1,10 @@
 import React, { createContext } from "react";
-import { IUser, Role } from "../types/@types";
-import { v4 as uuid } from "uuid";
+import { IUser } from "../types/@types";
 import { usePersistentState } from "../hooks/usePersistentState";
 
 interface IProps {
   children: React.ReactNode;
 }
-
-const INITIAL_USER = {
-  id: uuid(),
-  fullName: "",
-  email: "",
-  password: "",
-  contactNumber: "",
-  age: "",
-  gender: "",
-  role: Role.patient,
-};
 
 export const authContext = createContext<{
   user: IUser | null;
@@ -35,7 +23,7 @@ export const authContext = createContext<{
 });
 
 const AuthProvider = (props: IProps) => {
-  const [user, setUser] = usePersistentState<IUser | null>("user", INITIAL_USER);
+  const [user, setUser] = usePersistentState<IUser | null>("user", null);
   const [singedUpUsers, setSignedUpUsers] = usePersistentState<IUser[]>("signedUp", []);
 
   const signUserUp = (signedUser: IUser) => {
