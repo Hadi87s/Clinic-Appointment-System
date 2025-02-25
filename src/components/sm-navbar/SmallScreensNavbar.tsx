@@ -18,8 +18,8 @@ const SmallScreensNavbar = (props: IProps) => {
         props.menuVisible
           ? "translate-x-0 opacity-100"
           : "translate-x-full opacity-0"
-      } transition duration-300 flex flex-col justify-center bg-gradient-to-r from-blue-900/95 to-blue-500/85
-        backdrop-blur-[2px] mt-10 text-center p-4 gap-1 absolute -top-[50px] -right-[50px] md:-right-[70px] min-h-screen w-[370px] border-l-2 border-blue-900`}
+      } transition duration-300 flex flex-col justify-center bg-gradient-to-r from-blue-950/99 to-blue-600/90
+        backdrop-blur-[2px] mt-10 text-center p-4 gap-1 absolute -top-[51px] -right-[50px] md:-right-[70px] min-h-screen w-[370px] border-l-2 border-blue-600 text-2xl`}
     >
       {props.user ? (
         <div

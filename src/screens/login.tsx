@@ -53,7 +53,7 @@ const Login = () => {
 
   return (
     <>
-    <BlobBackground height="h-[100%]" src="/loginPage.svg"/>
+    <BlobBackground sh="" height="h-[100%]" src="/loginPage.svg"/>
     <motion.div
       initial="hidden"
       whileInView="visible"
@@ -62,10 +62,10 @@ const Login = () => {
         hidden: { opacity: 0, x: -50 },
         visible: { opacity: 1,x:0, transition: { duration: 0.4 } },
       }}
-      className="flex justify-center items-center"
+    
       >
-      <Container maxWidth="md" className="flex justify-center items-center">
-       
+      <Container maxWidth="sm" >
+
           <Box
             component="form"
             onSubmit={handleLogin}
@@ -82,7 +82,7 @@ const Login = () => {
               fontFamily: '"Fredoka", serif',
               "&:hover": { boxShadow: 6 },
             }}
-            className="min-w-[500px] flex flex-row justify-center items-center"
+           
             >
             <Typography
               variant="h4"

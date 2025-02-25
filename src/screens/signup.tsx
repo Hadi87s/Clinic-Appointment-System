@@ -21,16 +21,8 @@ import { useValidateUser } from "../hooks/useValidator";
 import { motion } from "framer-motion";
 import BlobBackground from "../components/blob-background/Blob";
 import { Link } from "react-router-dom";
+import { INITIAL_USER } from "../data/data";
 
-const INITIAL_USER = {
-  fullName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  contactNumber: "",
-  age: "",
-  gender: "",
-};
 
 const Signup = () => {
   const [formData, setFormData] = useState(INITIAL_USER);
@@ -89,7 +81,7 @@ const Signup = () => {
 
   return (
     <>
-    <BlobBackground height="h-[130%]" src="/loginPage.svg"/>
+    <BlobBackground sh="h-[155%] lg:h-[145%]" height="2xl:h-[135%]" src="/loginPage.svg"/>
     <motion.div
       initial="hidden"
       whileInView="visible"
@@ -107,7 +99,7 @@ const Signup = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            borderRadius: 3,
+            borderRadius: 5,
             boxShadow: 4,
             backgroundColor: "white",
             transition: "all 0.3s",

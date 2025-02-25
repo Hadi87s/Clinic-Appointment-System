@@ -18,6 +18,7 @@ import GlobalThemeProvider from "./providers/themeProvider";
 import { Role } from "./types/@types";
 import UserProfile from "./components/profile-pages/UserProfile";
 import AdminProfile from "./components/profile-pages/AdminProfile";
+import OurDoctors from "./screens/OurDoctors";
 
 const routes = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const routes = createBrowserRouter([
       {
         path: "/admin/:id",
         element: <AdminProfile />,
+      },
+      {
+        path: "/doctors",
+        element: <OurDoctors />,
       },
       {
         path: "*",

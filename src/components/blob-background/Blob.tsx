@@ -1,11 +1,12 @@
 interface IProps {
     src: string;
-    height: string
+    height: string;
+    sh: string;
 }
 
-const BlobBackground = ({src,height}: IProps) => {
+const BlobBackground = ({src,height,sh}: IProps) => {
   return (
-    <div className={`${height} w-[100%] absolute inset-0 -z-1`} style={{backgroundImage: `url(${src})`, backgroundSize:"cover", backgroundPosition:"center"}}></div>
+    <div className={`${sh} ${height} w-[100%] absolute inset-0 -z-1`} style={{backgroundImage: `url(${src})`, backgroundSize:"cover", backgroundPosition:"center"}}></div>
   )
 }
 

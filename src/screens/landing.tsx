@@ -4,40 +4,7 @@ import Footer from "../components/footer/Footer";
 import ContactUs from "../components/contact/ContactUs";
 import { motion } from "framer-motion";
 import { AnimatedTestimonials } from "../components/ui/animated-testimonials";
-import { ITestimonail } from "../types/@types";
-
-const testies : ITestimonail[] =[
-  {
-    quote: "This service exceeded my expectations! Highly recommended.",
-    name: "Sarah Johnson",
-    designation: "Marketing Manager",
-    src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote: "Fantastic experience! I will definitely use it again.",
-    name: "Michael Smith",
-    designation: "Software Engineer",
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote: "Top-notch quality and excellent customer support.",
-    name: "Emily Davis",
-    designation: "Product Designer",
-    src: "https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote: "A seamless and enjoyable experience from start to finish.",
-    name: "James Wilson",
-    designation: "Entrepreneur",
-    src: "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote: "Would definitely recommend this to my colleagues!",
-    name: "Sophia Martinez",
-    designation: "HR Specialist",
-    src: "https://images.unsplash.com/photo-1480429370139-e0132c086e2a?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-]
+import { feedback } from "../data/data";
 
 const Landing = () => {
   return (
@@ -70,9 +37,8 @@ const Landing = () => {
           <div className="flex justify-center w-[100%] mt-10 -ml-7.5">
             <Link
               to="/create-appointment"
-              className="font-[500] p-4 transition duration-150 bg-blue-600 text-blue-50 rounded-2xl
-              outline-2 outline-blue-50 hover:bg-blue-50 hover:text-blue-900 hover:outline-blue-800
-              shadow-2xl mb-5"
+              className="font-[500] p-4 bg-blue-600 hover:bg-blue-700 text-blue-100 hover:text-white rounded-2xl
+              outline-2 outline-blue-50 transitions duration-300 shadow-[0_0_24px_rgba(0,0,0,0.25)] hover:shadow-[0_0_29px_rgba(29,78,216,0.7)] hover:-translate-y-1.5 mb-5"
             >
               Book an Appointment
             </Link>
@@ -88,8 +54,7 @@ const Landing = () => {
         ></div>
       </div>
       <Features />
-      {/* <Testimonials /> */}
-      <AnimatedTestimonials testimonials={testies} autoplay={true}/>
+      <AnimatedTestimonials testimonials={feedback} autoplay={true}/>
       <ContactUs />
       <Footer />
     </div>
