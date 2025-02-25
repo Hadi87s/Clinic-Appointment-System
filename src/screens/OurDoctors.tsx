@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { FaHeart, FaBrain, FaChild, FaSearch, FaSkull, FaUserMd } from 'react-icons/fa';
 
@@ -59,7 +60,12 @@ import { FaHeart, FaBrain, FaChild, FaSearch, FaSkull, FaUserMd } from 'react-ic
           <h1 className="text-4xl font-bold text-center text-blue-600 mb-10">Meet Our Doctors</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {doctors.map((doctor) => (
-              <div key={doctor.id} className="group relative bg-white rounded-lg shadow-lg overflow-hidden">
+              <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y:0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+               key={doctor.id}
+                className="group relative bg-white rounded-lg shadow-lg overflow-hidden">
                 <img src={doctor.image} alt={doctor.name} className="w-full h-64 md:h-80 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t md:opacity-0 from-black/100 to-black/10  group-hover:opacity-70 transition-all duration-300">
                 </div>
@@ -70,7 +76,7 @@ import { FaHeart, FaBrain, FaChild, FaSearch, FaSkull, FaUserMd } from 'react-ic
                     <h2 className="text-2xl font-bold text-white">{doctor.name}</h2>
                     <p className="text-white mt-2">{doctor.bio}</p>
                   </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
