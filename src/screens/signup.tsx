@@ -89,7 +89,7 @@ const Signup = () => {
 
   return (
     <>
-    <BlobBackground height="h-[130%]" src="/loginPage.svg"/>
+    <BlobBackground sh="h-[155%] lg:h-[145%]" height="2xl:h-[135%]" src="/loginPage.svg"/>
     <motion.div
       initial="hidden"
       whileInView="visible"
@@ -107,7 +107,7 @@ const Signup = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            borderRadius: 3,
+            borderRadius: 5,
             boxShadow: 4,
             backgroundColor: "white",
             transition: "all 0.3s",
