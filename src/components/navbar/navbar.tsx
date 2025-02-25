@@ -23,8 +23,9 @@ const Navbar = () => {
   return (
     <div className="flex justify-center mx-auto w-[100%]">
       <div
+      style={{zIndex: "1000"}}
         className={`mt-2 flex w-[90%] justify-between content-center h-17
-         p-4 z-10 text-blue-200 navbar rounded-2xl bg-gradient-to-r from-blue-900/85 to-blue-500/85
+         p-4 text-blue-200 navbar rounded-2xl bg-gradient-to-r from-blue-900/85 to-blue-500/85
         backdrop-blur-[2px] fixed inset-0 inset-x-auto border-2 border-blue-600 font-[500]`}
       >
         <div

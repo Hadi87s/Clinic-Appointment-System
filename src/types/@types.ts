@@ -48,3 +48,10 @@ export interface FormData {
   bookedSlot: Dayjs | null;
   symptoms: string;
 }
+
+export interface ITestimonail { 
+  quote: string; 
+  name: string; 
+  designation: string; 
+  src: string
+}

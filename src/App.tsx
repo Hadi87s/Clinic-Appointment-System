@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./screens/login";
-import Landing from "./components/Landing/landing";
+import Landing from "./screens/landing";
 import Dashboard from "./screens/dashboard";
 import ViewAppointment from "./screens/viewAppointment";
 import NotFound from "./components/notFound/notFound";
