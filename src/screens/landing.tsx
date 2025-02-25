@@ -37,9 +37,8 @@ const Landing = () => {
           <div className="flex justify-center w-[100%] mt-10 -ml-7.5">
             <Link
               to="/create-appointment"
-              className="font-[500] p-4 transition duration-150 bg-blue-600 text-blue-50 rounded-2xl
-              outline-2 outline-blue-50 hover:bg-blue-50 hover:text-blue-900 hover:outline-blue-800
-              shadow-2xl mb-5"
+              className="font-[500] p-4 bg-blue-600 hover:bg-blue-700 text-blue-100 hover:text-white rounded-2xl
+              outline-2 outline-blue-50 transitions duration-300 shadow-[0_0_24px_rgba(0,0,0,0.25)] hover:shadow-[0_0_29px_rgba(29,78,216,0.7)] hover:-translate-y-1.5 mb-5"
             >
               Book an Appointment
             </Link>

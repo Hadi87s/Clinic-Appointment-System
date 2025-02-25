@@ -15,6 +15,15 @@ export const links = [
     path: "/about",
     title: "About Us",
   },
+  {
+    path: "/doctors",
+    title: "Our Team",
+  },
+  {
+    path: "/create-appointment",
+    title: "Book Now",
+    role: Role.patient,
+  },
 ];
 
 export const securedLinks = [
@@ -33,11 +42,7 @@ export const securedLinks = [
     title: "View Appointments",
     role: Role.patient,
   },
-  {
-    path: "/create-appointment",
-    title: "Book Now",
-    role: Role.patient,
-  },
+
 ];
 
 const LgScreenLinks = (props: INav) => {

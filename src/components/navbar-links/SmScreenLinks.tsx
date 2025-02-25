@@ -4,7 +4,7 @@ import LgNavLink from "../navbar/lgNavLink";
 
 const SmScreenLinks = (props: INav) => {
   return (
-    <div className="flex flex-col items-center lg:hidden gap-5 mb-5 ">
+    <div className="flex flex-col items-center lg:hidden gap-5 mb-5">
       {links.map((link, index) => (
         <LgNavLink key={index} path={link.path}>
           {link.title}

@@ -21,16 +21,8 @@ import { useValidateUser } from "../hooks/useValidator";
 import { motion } from "framer-motion";
 import BlobBackground from "../components/blob-background/Blob";
 import { Link } from "react-router-dom";
+import { INITIAL_USER } from "../data/data";
 
-const INITIAL_USER = {
-  fullName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  contactNumber: "",
-  age: "",
-  gender: "",
-};
 
 const Signup = () => {
   const [formData, setFormData] = useState(INITIAL_USER);
