@@ -19,6 +19,8 @@ import { authContext } from "../providers/authProvider";
 import { IUser, Role } from "../types/@types";
 import { useValidateUser } from "../hooks/useValidator";
 import { motion } from "framer-motion";
+import BlobBackground from "../components/blob-background/Blob";
+import { Link } from "react-router-dom";
 
 const INITIAL_USER = {
   fullName: "",
@@ -86,15 +88,17 @@ const Signup = () => {
   };
 
   return (
+    <>
+    <BlobBackground height="h-[130%]" src="/loginPage.svg"/>
     <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.4 } },
+        hidden: { opacity: 0, x: -50 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
       }}
-    >
+      >
       <Container component="main" maxWidth="sm">
         <Box
           sx={{
@@ -110,7 +114,7 @@ const Signup = () => {
             fontFamily: '"Fredoka", serif',
             "&:hover": { boxShadow: 6 },
           }}
-        >
+          >
           <Typography
             variant="h4"
             component="h1"
@@ -120,7 +124,7 @@ const Signup = () => {
               fontFamily: '"Fredoka", serif',
               fontWeight: "600",
             }}
-          >
+            >
             Sign Up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -358,7 +362,6 @@ const Signup = () => {
               variant="contained"
               sx={{
                 mt: 2,
-                mb: 4,
                 backgroundColor: "#1E40AF",
                 fontFamily: '"Fredoka", serif',
                 "&:hover": { backgroundColor: "#1E3A8A" },
@@ -369,6 +372,23 @@ const Signup = () => {
               Sign Up
             </Button>
           </Box>
+          <Typography
+              variant="body2"
+              sx={{ mt: 2, color: "gray", fontFamily: '"Fredoka", serif' }}
+              >
+              Already Signed Up?{" "}
+              <Link
+                className="hover:underline"
+                to="/login"
+                style={{
+                  color: "#1E40AF",
+                  fontWeight: "bold",
+                  fontFamily: '"Fredoka", serif',
+                }}
+                >
+                Login
+              </Link>
+            </Typography>
         </Box>
         <Snackbar
           open={success}
@@ -385,6 +405,7 @@ const Signup = () => {
         </Snackbar>
       </Container>
     </motion.div>
+    </>
   );
 };
 
