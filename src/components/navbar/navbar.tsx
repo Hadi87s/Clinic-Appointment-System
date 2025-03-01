@@ -37,9 +37,9 @@ const Navbar = () => {
             });
             navigate("/");
           }}
-          className="logo h-fit text-white text-[24px] cursor-pointer transition-all duration-150 hover:drop-shadow-lg"
+          className="flex gap-2 logo h-fit text-white text-[24px] cursor-pointer transition-all duration-150 hover:drop-shadow-lg"
         >
-          AppointMed
+         <img src="/health.svg" alt="" width={30} height={30} className="scale-115" /><span> AppointMed</span>
         </div>
         <LgScreenLinks user={user} />
         <SmallScreensNavbar
