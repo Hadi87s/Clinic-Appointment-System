@@ -107,6 +107,12 @@ const Signup = () => {
             "&:hover": { boxShadow: 6 },
           }}
           >
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="w-full"
+          >  
           <Typography
             variant="h4"
             component="h1"
@@ -119,7 +125,14 @@ const Signup = () => {
             >
             Sign Up
           </Typography>
+          </motion.div>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               margin="normal"
               required
@@ -149,6 +162,13 @@ const Signup = () => {
                 },
               }}
             />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               margin="normal"
               required
@@ -177,6 +197,13 @@ const Signup = () => {
                 },
               }}
             />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               margin="normal"
               required
@@ -209,6 +236,13 @@ const Signup = () => {
                 },
               }}
             />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               margin="normal"
               required
@@ -238,6 +272,13 @@ const Signup = () => {
                 },
               }}
             />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               margin="normal"
               required
@@ -274,6 +315,13 @@ const Signup = () => {
                 },
               }}
             />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               margin="normal"
               required
@@ -302,6 +350,13 @@ const Signup = () => {
                 },
               }}
             />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="w-full"
+            >  
             <FormControl
               fullWidth
               margin="normal"
@@ -348,6 +403,13 @@ const Signup = () => {
                 <MenuItem value="female">Female</MenuItem>
               </Select>
             </FormControl>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              className="w-full"
+            > 
             <Button
               type="submit"
               fullWidth
@@ -363,7 +425,14 @@ const Signup = () => {
             >
               Sign Up
             </Button>
+            </motion.div>
           </Box>
+          <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className=""
+            >  
           <Typography
               variant="body2"
               sx={{ mt: 2, color: "gray", fontFamily: '"Fredoka", serif' }}
@@ -381,6 +450,7 @@ const Signup = () => {
                 Login
               </Link>
             </Typography>
+            </motion.div>
         </Box>
         <Snackbar
           open={success}

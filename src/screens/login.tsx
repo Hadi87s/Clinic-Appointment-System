@@ -62,7 +62,6 @@ const Login = () => {
         hidden: { opacity: 0, x: -50 },
         visible: { opacity: 1,x:0, transition: { duration: 0.4 } },
       }}
-    
       >
       <Container maxWidth="sm" >
 
@@ -82,8 +81,13 @@ const Login = () => {
               fontFamily: '"Fredoka", serif',
               "&:hover": { boxShadow: 6 },
             }}
-           
             >
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="w-full"
+            >  
             <Typography
               variant="h4"
               component="h1"
@@ -102,6 +106,13 @@ const Login = () => {
               >
               Login to continue managing your appointments
             </Typography>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               label="Email"
               variant="outlined"
@@ -129,6 +140,13 @@ const Login = () => {
                 },
               }}
               />
+              </motion.div>
+              <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="w-full"
+            >  
             <TextField
               label="Password"
               variant="outlined"
@@ -156,6 +174,13 @@ const Login = () => {
                 },
               }}
               />
+              </motion.div>
+              <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="w-full"
+            >  
             <Button
               type="submit"
               variant="contained"
@@ -171,6 +196,12 @@ const Login = () => {
               >
               Login
             </Button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >  
             <Typography
               variant="body2"
               sx={{ mt: 2, color: "gray", fontFamily: '"Fredoka", serif' }}
@@ -188,6 +219,7 @@ const Login = () => {
                 Signup
               </Link>
             </Typography>
+            </motion.div>
           </Box>
       </Container>
     </motion.div>
